@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 mabarroso. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "StoreViewController.h"
 
-@interface ViewController ()
+@interface StoreViewController ()
 
 @end
 
-@implementation ViewController
+@implementation StoreViewController
 
 - (void)viewDidLoad
 {

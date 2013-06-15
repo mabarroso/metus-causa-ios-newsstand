@@ -18,7 +18,7 @@
 		26B0D9F3176CB89900654D78 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 26B0D9F2176CB89900654D78 /* Default-568h@2x.png */; };
 		26B0D9F6176CB89900654D78 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26B0D9F4176CB89900654D78 /* MainStoryboard_iPhone.storyboard */; };
 		26B0D9F9176CB89900654D78 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26B0D9F7176CB89900654D78 /* MainStoryboard_iPad.storyboard */; };
-		26B0D9FC176CB89900654D78 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B0D9FB176CB89900654D78 /* ViewController.m */; };
+		26B0D9FC176CB89900654D78 /* StoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B0D9FB176CB89900654D78 /* StoreViewController.m */; };
 		26B0DA04176CB89900654D78 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26B0DA03176CB89900654D78 /* SenTestingKit.framework */; };
 		26B0DA05176CB89900654D78 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26B0D9DC176CB89900654D78 /* UIKit.framework */; };
 		26B0DA06176CB89900654D78 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26B0D9DE176CB89900654D78 /* Foundation.framework */; };
@@ -53,8 +53,8 @@
 		26B0D9F2176CB89900654D78 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		26B0D9F5176CB89900654D78 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		26B0D9F8176CB89900654D78 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		26B0D9FA176CB89900654D78 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		26B0D9FB176CB89900654D78 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		26B0D9FA176CB89900654D78 /* StoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StoreViewController.h; sourceTree = "<group>"; };
+		26B0D9FB176CB89900654D78 /* StoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StoreViewController.m; sourceTree = "<group>"; };
 		26B0DA02176CB89900654D78 /* Metus CausaTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Metus CausaTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		26B0DA03176CB89900654D78 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		26B0DA0B176CB89900654D78 /* Metus CausaTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Metus CausaTests-Info.plist"; sourceTree = "<group>"; };
@@ -126,8 +126,8 @@
 				26B0D9EC176CB89900654D78 /* AppDelegate.m */,
 				26B0D9F4176CB89900654D78 /* MainStoryboard_iPhone.storyboard */,
 				26B0D9F7176CB89900654D78 /* MainStoryboard_iPad.storyboard */,
-				26B0D9FA176CB89900654D78 /* ViewController.h */,
-				26B0D9FB176CB89900654D78 /* ViewController.m */,
+				26B0D9FA176CB89900654D78 /* StoreViewController.h */,
+				26B0D9FB176CB89900654D78 /* StoreViewController.m */,
 				26B0D9E3176CB89900654D78 /* Supporting Files */,
 			);
 			path = "Metus Causa";
@@ -288,7 +288,7 @@
 			files = (
 				26B0D9E9176CB89900654D78 /* main.m in Sources */,
 				26B0D9ED176CB89900654D78 /* AppDelegate.m in Sources */,
-				26B0D9FC176CB89900654D78 /* ViewController.m in Sources */,
+				26B0D9FC176CB89900654D78 /* StoreViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,6 +479,7 @@
 				26B0DA16176CB89900654D78 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		26B0DA17176CB89900654D78 /* Build configuration list for PBXNativeTarget "Metus CausaTests" */ = {
 			isa = XCConfigurationList;
@@ -487,6 +488,7 @@
 				26B0DA19176CB89900654D78 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
