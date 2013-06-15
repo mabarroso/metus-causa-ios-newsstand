@@ -24,6 +24,7 @@
 		26B0DA06176CB89900654D78 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26B0D9DE176CB89900654D78 /* Foundation.framework */; };
 		26B0DA0E176CB89900654D78 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 26B0DA0C176CB89900654D78 /* InfoPlist.strings */; };
 		26B0DA11176CB89900654D78 /* Metus_CausaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B0DA10176CB89900654D78 /* Metus_CausaTests.m */; };
+		26B0DA1C176CBDCC00654D78 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 26B0DA1B176CBDCC00654D78 /* icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		26B0DA0D176CB89900654D78 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		26B0DA0F176CB89900654D78 /* Metus_CausaTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Metus_CausaTests.h; sourceTree = "<group>"; };
 		26B0DA10176CB89900654D78 /* Metus_CausaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Metus_CausaTests.m; sourceTree = "<group>"; };
+		26B0DA1B176CBDCC00654D78 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 		26B0D9D0176CB89900654D78 = {
 			isa = PBXGroup;
 			children = (
+				26B0DA1A176CBDAA00654D78 /* Resources */,
 				26B0D9E2176CB89900654D78 /* Metus Causa */,
 				26B0DA09176CB89900654D78 /* Metus CausaTests */,
 				26B0D9DB176CB89900654D78 /* Frameworks */,
@@ -161,6 +164,14 @@
 				26B0DA0C176CB89900654D78 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		26B0DA1A176CBDAA00654D78 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				26B0DA1B176CBDCC00654D78 /* icon.png */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,6 +251,7 @@
 				26B0D9F3176CB89900654D78 /* Default-568h@2x.png in Resources */,
 				26B0D9F6176CB89900654D78 /* MainStoryboard_iPhone.storyboard in Resources */,
 				26B0D9F9176CB89900654D78 /* MainStoryboard_iPad.storyboard in Resources */,
+				26B0DA1C176CBDCC00654D78 /* icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
