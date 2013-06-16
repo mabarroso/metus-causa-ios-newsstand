@@ -7,16 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		263260AA176E635000D5DE6E /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 263260A9176E635000D5DE6E /* MainStoryboard_iPhone.storyboard */; };
+		263260B1176E63F100D5DE6E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 263260AC176E63F100D5DE6E /* AppDelegate.m */; };
+		263260B2176E63F100D5DE6E /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 263260AE176E63F100D5DE6E /* DetailViewController.m */; };
+		263260B3176E63F100D5DE6E /* StoreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 263260B0176E63F100D5DE6E /* StoreTableViewController.m */; };
 		26B0D9DD176CB89900654D78 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26B0D9DC176CB89900654D78 /* UIKit.framework */; };
 		26B0D9DF176CB89900654D78 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26B0D9DE176CB89900654D78 /* Foundation.framework */; };
 		26B0D9E1176CB89900654D78 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26B0D9E0176CB89900654D78 /* CoreGraphics.framework */; };
 		26B0D9E7176CB89900654D78 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 26B0D9E5176CB89900654D78 /* InfoPlist.strings */; };
 		26B0D9E9176CB89900654D78 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B0D9E8176CB89900654D78 /* main.m */; };
-		26B0D9ED176CB89900654D78 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B0D9EC176CB89900654D78 /* AppDelegate.m */; };
 		26B0D9EF176CB89900654D78 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 26B0D9EE176CB89900654D78 /* Default.png */; };
 		26B0D9F1176CB89900654D78 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 26B0D9F0176CB89900654D78 /* Default@2x.png */; };
 		26B0D9F3176CB89900654D78 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 26B0D9F2176CB89900654D78 /* Default-568h@2x.png */; };
-		26B0D9F6176CB89900654D78 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26B0D9F4176CB89900654D78 /* MainStoryboard_iPhone.storyboard */; };
 		26B0D9F9176CB89900654D78 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 26B0D9F7176CB89900654D78 /* MainStoryboard_iPad.storyboard */; };
 		26B0DA04176CB89900654D78 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26B0DA03176CB89900654D78 /* SenTestingKit.framework */; };
 		26B0DA05176CB89900654D78 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26B0D9DC176CB89900654D78 /* UIKit.framework */; };
@@ -24,7 +26,6 @@
 		26B0DA0E176CB89900654D78 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 26B0DA0C176CB89900654D78 /* InfoPlist.strings */; };
 		26B0DA11176CB89900654D78 /* Metus_CausaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B0DA10176CB89900654D78 /* Metus_CausaTests.m */; };
 		26B0DA1C176CBDCC00654D78 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 26B0DA1B176CBDCC00654D78 /* icon.png */; };
-		26B2F978176DB47200DFBB3D /* StoreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B2F977176DB47200DFBB3D /* StoreTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		263260A9176E635000D5DE6E /* MainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		263260AB176E63F100D5DE6E /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		263260AC176E63F100D5DE6E /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		263260AD176E63F100D5DE6E /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		263260AE176E63F100D5DE6E /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		263260AF176E63F100D5DE6E /* StoreTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreTableViewController.h; sourceTree = "<group>"; };
+		263260B0176E63F100D5DE6E /* StoreTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreTableViewController.m; sourceTree = "<group>"; };
 		26B0D9D9176CB89900654D78 /* Metus Causa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Metus Causa.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		26B0D9DC176CB89900654D78 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		26B0D9DE176CB89900654D78 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -46,12 +54,9 @@
 		26B0D9E6176CB89900654D78 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		26B0D9E8176CB89900654D78 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		26B0D9EA176CB89900654D78 /* Metus Causa-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Metus Causa-Prefix.pch"; sourceTree = "<group>"; };
-		26B0D9EB176CB89900654D78 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		26B0D9EC176CB89900654D78 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		26B0D9EE176CB89900654D78 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		26B0D9F0176CB89900654D78 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		26B0D9F2176CB89900654D78 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		26B0D9F5176CB89900654D78 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		26B0D9F8176CB89900654D78 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		26B0DA02176CB89900654D78 /* Metus CausaTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Metus CausaTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		26B0DA03176CB89900654D78 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -60,8 +65,6 @@
 		26B0DA0F176CB89900654D78 /* Metus_CausaTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Metus_CausaTests.h; sourceTree = "<group>"; };
 		26B0DA10176CB89900654D78 /* Metus_CausaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Metus_CausaTests.m; sourceTree = "<group>"; };
 		26B0DA1B176CBDCC00654D78 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
-		26B2F976176DB47200DFBB3D /* StoreTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreTableViewController.h; sourceTree = "<group>"; };
-		26B2F977176DB47200DFBB3D /* StoreTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,12 +125,14 @@
 		26B0D9E2176CB89900654D78 /* Metus Causa */ = {
 			isa = PBXGroup;
 			children = (
-				26B0D9EB176CB89900654D78 /* AppDelegate.h */,
-				26B0D9EC176CB89900654D78 /* AppDelegate.m */,
-				26B0D9F4176CB89900654D78 /* MainStoryboard_iPhone.storyboard */,
-				26B2F976176DB47200DFBB3D /* StoreTableViewController.h */,
-				26B2F977176DB47200DFBB3D /* StoreTableViewController.m */,
 				26B0D9F7176CB89900654D78 /* MainStoryboard_iPad.storyboard */,
+				263260A9176E635000D5DE6E /* MainStoryboard_iPhone.storyboard */,
+				263260AB176E63F100D5DE6E /* AppDelegate.h */,
+				263260AC176E63F100D5DE6E /* AppDelegate.m */,
+				263260AD176E63F100D5DE6E /* DetailViewController.h */,
+				263260AE176E63F100D5DE6E /* DetailViewController.m */,
+				263260AF176E63F100D5DE6E /* StoreTableViewController.h */,
+				263260B0176E63F100D5DE6E /* StoreTableViewController.m */,
 				26B0D9E3176CB89900654D78 /* Supporting Files */,
 			);
 			path = "Metus Causa";
@@ -249,9 +254,9 @@
 				26B0D9EF176CB89900654D78 /* Default.png in Resources */,
 				26B0D9F1176CB89900654D78 /* Default@2x.png in Resources */,
 				26B0D9F3176CB89900654D78 /* Default-568h@2x.png in Resources */,
-				26B0D9F6176CB89900654D78 /* MainStoryboard_iPhone.storyboard in Resources */,
 				26B0D9F9176CB89900654D78 /* MainStoryboard_iPad.storyboard in Resources */,
 				26B0DA1C176CBDCC00654D78 /* icon.png in Resources */,
+				263260AA176E635000D5DE6E /* MainStoryboard_iPhone.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,8 +292,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				26B0D9E9176CB89900654D78 /* main.m in Sources */,
-				26B0D9ED176CB89900654D78 /* AppDelegate.m in Sources */,
-				26B2F978176DB47200DFBB3D /* StoreTableViewController.m in Sources */,
+				263260B1176E63F100D5DE6E /* AppDelegate.m in Sources */,
+				263260B2176E63F100D5DE6E /* DetailViewController.m in Sources */,
+				263260B3176E63F100D5DE6E /* StoreTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,14 +323,6 @@
 				26B0D9E6176CB89900654D78 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		26B0D9F4176CB89900654D78 /* MainStoryboard_iPhone.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				26B0D9F5176CB89900654D78 /* en */,
-			);
-			name = MainStoryboard_iPhone.storyboard;
 			sourceTree = "<group>";
 		};
 		26B0D9F7176CB89900654D78 /* MainStoryboard_iPad.storyboard */ = {

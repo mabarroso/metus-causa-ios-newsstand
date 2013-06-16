@@ -1,9 +1,9 @@
 //
-//  AppDelegate.m
-//  Metus Causa
+//  APPAppDelegate.m
+//  RSSreader
 //
-//  Created by mabarroso on 15/06/13.
-//  Copyright (c) 2013 mabarroso. All rights reserved.
+//  Created by Rafael Garcia Leiva on 08/04/13.
+//  Copyright (c) 2013 Appcoda. All rights reserved.
 //
 
 #import "AppDelegate.h"
