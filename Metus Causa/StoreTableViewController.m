@@ -13,8 +13,11 @@
     NSXMLParser *parser;
     NSMutableArray *feeds;
     NSMutableDictionary *item;
+    NSMutableString *name;
     NSMutableString *title;
-    NSMutableString *link;
+    NSMutableString *date;
+    NSMutableString *cover;
+    NSMutableString *content;
     NSString *element;
 }
 @end
@@ -29,7 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     feeds = [[NSMutableArray alloc] init];
-    NSURL *url = [NSURL URLWithString:@"http://images.apple.com/main/rss/hotnews/hotnews.rss"];
+    NSURL *url = [NSURL URLWithString:@"http://circulo.almianos.net/newsstand/metuscausa.rss"];
     parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
     [parser setDelegate:self];
     [parser setShouldResolveExternalEntities:NO];
@@ -63,11 +66,12 @@
     element = elementName;
     
     if ([element isEqualToString:@"item"]) {
-        
         item    = [[NSMutableDictionary alloc] init];
+        name    = [[NSMutableString alloc] init];
         title   = [[NSMutableString alloc] init];
-        link    = [[NSMutableString alloc] init];
-        
+        date    = [[NSMutableString alloc] init];
+        cover   = [[NSMutableString alloc] init];
+        content = [[NSMutableString alloc] init];
     }
     
 }
@@ -76,8 +80,11 @@
     
     if ([elementName isEqualToString:@"item"]) {
         
+        [item setObject:name forKey:@"name"];
         [item setObject:title forKey:@"title"];
-        [item setObject:link forKey:@"link"];
+        [item setObject:date forKey:@"date"];
+        [item setObject:cover forKey:@"cover"];
+        [item setObject:content forKey:@"content"];
         
         [feeds addObject:[item copy]];
         
@@ -87,10 +94,16 @@
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
     
-    if ([element isEqualToString:@"title"]) {
+    if ([element isEqualToString:@"name"]) {
+        [name appendString:string];
+    } else if ([element isEqualToString:@"title"]) {
         [title appendString:string];
-    } else if ([element isEqualToString:@"link"]) {
-        [link appendString:string];
+    } else if ([element isEqualToString:@"date"]) {
+        [date appendString:string];
+    } else if ([element isEqualToString:@"cover"]) {
+        [cover appendString:string];
+    } else if ([element isEqualToString:@"content"]) {
+        [content appendString:string];
     }
     
 }
