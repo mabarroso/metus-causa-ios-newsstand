@@ -32,7 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     feeds = [[NSMutableArray alloc] init];
-    NSURL *url = [NSURL URLWithString:@"http://circulo.almianos.net/newsstand/metuscausa.rss"];
+    NSURL *url = [NSURL URLWithString:@"http://circulo.almianos.net/newsstand/metuscausa.xml"];
     parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
     [parser setDelegate:self];
     [parser setShouldResolveExternalEntities:NO];
@@ -57,7 +57,30 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    cell.textLabel.text = [[feeds objectAtIndex:indexPath.row] objectForKey: @"title"];
+//    cell.textLabel.text = [[feeds objectAtIndex:indexPath.row] objectForKey: @"name" viewWithTag:100];
+//    cell.textLabel.text = [[feeds objectAtIndex:indexPath.row] objectForKey: @"title" viewWithTag:110];
+//    cell.textLabel.text = [[feeds objectAtIndex:indexPath.row] objectForKey: @"title"];
+    
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+//    NSInteger index = indexPath.row;
+    UILabel *titleLabel = (UILabel *)[cell viewWithTag:101];
+    titleLabel.text=[[feeds objectAtIndex:indexPath.row] objectForKey:@"name"];
+    UILabel *subtitleLabel = (UILabel *)[cell viewWithTag:102];
+    subtitleLabel.text=[[feeds objectAtIndex:indexPath.row] objectForKey:@"title"];
+    UIImageView *imageView = (UIImageView *)[cell viewWithTag:103];
+    imageView.image=nil; // reset image as it will be retrieved asychronously
+//    [feeds objectAtIndex:indexPath.row completionBlock:^(UIImage *img) {
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            UITableViewCell *cell = [table_ cellForRowAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:0]];
+//            UIImageView *imageView = (UIImageView *)[cell viewWithTag:103];
+//            imageView.image=img;
+//        });
+//    }];
+
+//    UILabel *tapLabel = (UILabel *)[cell viewWithTag:103];
+//    tapLabel.text=@"TAP TO READ";
+//    tapLabel.alpha=1.0;
+    
     return cell;
 }
 
