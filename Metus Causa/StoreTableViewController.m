@@ -62,7 +62,7 @@
     titleLabel.text=[[feeds objectAtIndex:indexPath.row] objectForKey:@"name"];
 
     UILabel *subtitleLabel = (UILabel *)[cell viewWithTag:102];
-    subtitleLabel.text=[[feeds objectAtIndex:indexPath.row] objectForKey:@"cover"];
+    subtitleLabel.text=[[feeds objectAtIndex:indexPath.row] objectForKey:@"title"];
 
     UIImageView *imageView = (UIImageView *)[cell viewWithTag:103];
     NSString *url=[[feeds objectAtIndex:indexPath.row] objectForKey:@"cover"];
