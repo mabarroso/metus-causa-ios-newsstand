@@ -14,7 +14,9 @@
     NSMutableArray *feeds;
     NSMutableDictionary *item;
     NSMutableString *name;
+    NSMutableString *number;
     NSMutableString *title;
+    NSMutableString *description;
     NSMutableString *date;
     NSMutableString *cover;
     NSMutableString *content;
@@ -80,12 +82,14 @@
     element = elementName;
     
     if ([element isEqualToString:@"item"]) {
-        item    = [[NSMutableDictionary alloc] init];
-        name    = [[NSMutableString alloc] init];
-        title   = [[NSMutableString alloc] init];
-        date    = [[NSMutableString alloc] init];
-        cover   = [[NSMutableString alloc] init];
-        content = [[NSMutableString alloc] init];
+        item        = [[NSMutableDictionary alloc] init];
+        name        = [[NSMutableString alloc] init];
+        number      = [[NSMutableString alloc] init];
+        title       = [[NSMutableString alloc] init];
+        description = [[NSMutableString alloc] init];
+        date        = [[NSMutableString alloc] init];
+        cover       = [[NSMutableString alloc] init];
+        content     = [[NSMutableString alloc] init];
     }
     
 }
@@ -95,23 +99,27 @@
     if ([elementName isEqualToString:@"item"]) {
         
         [item setObject:name forKey:@"name"];
+        [item setObject:number forKey:@"number"];
         [item setObject:title forKey:@"title"];
+        [item setObject:description forKey:@"description"];
         [item setObject:date forKey:@"date"];
         [item setObject:cover forKey:@"cover"];
         [item setObject:content forKey:@"content"];
         
         [feeds addObject:[item copy]];
-        
     }
-    
 }
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
     
     if ([element isEqualToString:@"name"]) {
         [name appendString:string];
+    } else if ([element isEqualToString:@"number"]) {
+        [number appendString:string];
     } else if ([element isEqualToString:@"title"]) {
         [title appendString:string];
+    } else if ([element isEqualToString:@"description"]) {
+        [description appendString:string];
     } else if ([element isEqualToString:@"date"]) {
         [date appendString:string];
     } else if ([element isEqualToString:@"cover"]) {
@@ -119,7 +127,6 @@
     } else if ([element isEqualToString:@"content"]) {
         [content appendString:string];
     }
-    
 }
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
