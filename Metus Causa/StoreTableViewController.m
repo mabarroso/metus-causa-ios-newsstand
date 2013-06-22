@@ -75,6 +75,37 @@
     UILabel *subtitleLabel = (UILabel *)[cell viewWithTag:102];
     subtitleLabel.text=[[feeds objectAtIndex:indexPath.row] objectForKey:@"title"];
 
+    NSString *issueId = [[feeds objectAtIndex:indexPath.row] objectForKey:@"name"];
+    issueId = [issueId stringByAppendingString:[[feeds objectAtIndex:indexPath.row] objectForKey:@"number"]];
+    NSLog(@"issueId %@", issueId);
+    
+    NKLibrary *nkLib = [NKLibrary sharedLibrary];
+    NKIssue *nkIssue = [nkLib issueWithName:issueId];
+    UIProgressView *downloadProgress = (UIProgressView *)[cell viewWithTag:102];
+    UILabel *tapLabel = (UILabel *)[cell viewWithTag:103];
+    if(nkIssue.status==NKIssueContentStatusAvailable) {
+        //subtitleLabel.text=@"TAP TO READ";
+        subtitleLabel.alpha=1.0;
+        downloadProgress.alpha=0.0;
+    } else {
+        if(nkIssue.status==NKIssueContentStatusDownloading) {
+            downloadProgress.alpha=1.0;
+            subtitleLabel.alpha=0.0;
+        } else {
+            downloadProgress.alpha=0.0;
+            subtitleLabel.alpha=1.0;
+            //subtitleLabel.text=@"TAP TO DOWNLOAD";
+            UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+            button.frame = CGRectMake(cell.frame.origin.x + cell.frame.size.width - 100 - 5,
+                                      0 + ((cell.frame.size.height - 30) / 2),
+                                      100, 30);
+            [button setTitle:@"Download" forState:UIControlStateNormal];
+            [button addTarget:self action:@selector(customActionPressed:) forControlEvents:UIControlEventTouchUpInside];
+            button.backgroundColor= [UIColor clearColor];
+            [cell.contentView addSubview:button];
+        }
+    }
+
     UIImageView *imageView = (UIImageView *)[cell viewWithTag:103];
     NSString *url=[[feeds objectAtIndex:indexPath.row] objectForKey:@"cover"];
     NSURL *imageURL = [NSURL URLWithString:[url stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];

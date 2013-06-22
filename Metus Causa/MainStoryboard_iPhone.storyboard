@@ -24,18 +24,19 @@
             <objects>
                 <tableViewController storyboardIdentifier="" title="Master" id="12" customClass="StoreTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="13">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="5JV-dN-Inf" detailTextLabel="PBW-Kj-9LX" imageView="i4U-mo-ZCn" style="IBUITableViewCellStyleSubtitle" id="lJ0-d7-vTF">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="5JV-dN-Inf" detailTextLabel="PBW-Kj-9LX" imageView="i4U-mo-ZCn" style="IBUITableViewCellStyleSubtitle" id="lJ0-d7-vTF">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="101" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5JV-dN-Inf">
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="101" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5JV-dN-Inf">
+                                            <rect key="frame" x="34" y="2" width="38" height="22"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -44,7 +45,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="24" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="102" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PBW-Kj-9LX">
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" tag="102" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PBW-Kj-9LX">
+                                            <rect key="frame" x="34" y="24" width="47" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -87,10 +89,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="llE-Qw-2JJ" firstAttribute="bottom" secondItem="22" secondAttribute="bottom" type="default" id="9nn-5d-KrX"/>
-                            <constraint firstItem="llE-Qw-2JJ" firstAttribute="trailing" secondItem="22" secondAttribute="trailing" type="default" id="Rlq-Ux-oqU"/>
-                            <constraint firstItem="llE-Qw-2JJ" firstAttribute="top" secondItem="22" secondAttribute="top" type="default" id="WDq-VD-gas"/>
-                            <constraint firstItem="llE-Qw-2JJ" firstAttribute="leading" secondItem="22" secondAttribute="leading" type="default" id="qIh-OA-tUQ"/>
+                            <constraint firstItem="llE-Qw-2JJ" firstAttribute="top" secondItem="22" secondAttribute="top" type="default" id="Lwy-hi-pAm"/>
+                            <constraint firstItem="llE-Qw-2JJ" firstAttribute="bottom" secondItem="22" secondAttribute="bottom" type="default" id="Oc5-jo-XA0"/>
+                            <constraint firstItem="llE-Qw-2JJ" firstAttribute="leading" secondItem="22" secondAttribute="leading" type="default" id="WgD-54-gjX"/>
+                            <constraint firstItem="llE-Qw-2JJ" firstAttribute="trailing" secondItem="22" secondAttribute="trailing" type="default" id="dXq-ZM-5Sg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Content" id="26"/>

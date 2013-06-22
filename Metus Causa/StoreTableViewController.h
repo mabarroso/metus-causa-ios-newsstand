@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <NewsstandKit/NewsstandKit.h>
 
 @interface StoreTableViewController : UITableViewController <NSXMLParserDelegate> {
     UIBarButtonItem *refreshButton;
