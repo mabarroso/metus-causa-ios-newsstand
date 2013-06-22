@@ -44,6 +44,10 @@
     
     [self.navigationItem setRightBarButtonItem:refreshButton];
     
+    // left bar button item
+    self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(trashContent)];
+
+    
     feeds = [[NSMutableArray alloc] init];
     NSURL *url = [NSURL URLWithString:@"http://circulo.almianos.net/newsstand/metuscausa.xml"];
     parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
@@ -154,6 +158,13 @@
         [[segue destinationViewController] setUrl:string];
         
     }
+}
+
+#pragma mark - Trash content
+
+// remove all downloaded magazines
+-(void)trashContent {
+    NSLog(@"TODO: trashContent");
 }
 
 @end
