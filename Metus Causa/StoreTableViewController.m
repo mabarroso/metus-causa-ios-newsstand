@@ -47,13 +47,7 @@
     // left bar button item
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(trashContent)];
 
-    
-    feeds = [[NSMutableArray alloc] init];
-    NSURL *url = [NSURL URLWithString:@"http://circulo.almianos.net/newsstand/metuscausa.xml"];
-    parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
-    [parser setDelegate:self];
-    [parser setShouldResolveExternalEntities:NO];
-    [parser parse];
+    [self loadIssues];
 }
 
 - (void)didReceiveMemoryWarning
@@ -165,6 +159,18 @@
 // remove all downloaded magazines
 -(void)trashContent {
     NSLog(@"TODO: trashContent");
+}
+
+#pragma mark - Publisher interaction
+
+-(void)loadIssues {
+    NSLog(@"Load XML");
+    feeds = [[NSMutableArray alloc] init];
+    NSURL *url = [NSURL URLWithString:@"http://circulo.almianos.net/newsstand/metuscausa.xml"];
+    parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
+    [parser setDelegate:self];
+    [parser setShouldResolveExternalEntities:NO];
+    [parser parse];
 }
 
 @end
