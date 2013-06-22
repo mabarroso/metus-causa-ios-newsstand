@@ -33,6 +33,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // define right bar button items
+    refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadIssues)];
+    UIActivityIndicatorView *loadingActivity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    [loadingActivity startAnimating];
+    waitButton = [[UIBarButtonItem alloc] initWithCustomView:loadingActivity];
+    [waitButton setTarget:nil];
+    [waitButton setAction:nil];
+    
+    [self.navigationItem setRightBarButtonItem:refreshButton];
+    
     feeds = [[NSMutableArray alloc] init];
     NSURL *url = [NSURL URLWithString:@"http://circulo.almianos.net/newsstand/metuscausa.xml"];
     parser = [[NSXMLParser alloc] initWithContentsOfURL:url];

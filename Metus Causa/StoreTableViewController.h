@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface StoreTableViewController : UITableViewController <NSXMLParserDelegate>
+@interface StoreTableViewController : UITableViewController <NSXMLParserDelegate> {
+    UIBarButtonItem *refreshButton;
+    UIBarButtonItem *waitButton;    
+}
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
