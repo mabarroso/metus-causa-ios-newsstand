@@ -87,14 +87,13 @@
             //subtitleLabel.text=@"TAP TO DOWNLOAD";
             
             UILabel *download = [UILabel new];
+            download.tag = 200;
             download.frame = CGRectMake(cell.frame.origin.x + cell.frame.size.width - 100 - 5,
                                       0 + ((cell.frame.size.height - 30) / 2),
                                       100, 30);
             [download setText:@"Download"];
             download.backgroundColor= [UIColor clearColor];
             [cell.contentView addSubview:download];
-            
-            
         }
     }
 
@@ -102,6 +101,36 @@
     [imageView setImage:[publication coverImage:index]];
 
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    // possible actions: read or download
+    NKLibrary *nkLib = [NKLibrary sharedLibrary];
+    NKIssue *nkIssue = [nkLib issueWithName:[publication issueId:indexPath.row]];
+    // NSURL *downloadURL = [nkIssue contentURL];
+    if(nkIssue.status==NKIssueContentStatusAvailable) {
+//        [self readIssue:nkIssue];
+    } else if(nkIssue.status==NKIssueContentStatusNone) {
+        [self downloadIssueAtIndex:indexPath.row];
+    }
+}
+
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    
+    NKLibrary *nkLib = [NKLibrary sharedLibrary];
+    NKIssue *nkIssue = [nkLib issueWithName:[publication issueId:indexPath.row]];
+    if(nkIssue.status!=NKIssueContentStatusAvailable) {
+
+        UILabel *download = (UILabel *)[cell viewWithTag:200];
+        download.text=@"1Downloading";
+NSLog(@"downloading");
+        return false;
+    } else {
+        return true;
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -162,15 +191,11 @@
     NSLog(@"download %@", [publication issueId:index]);
     NSLog(@"content %@", [publication content:index]);
     
-/*
-    NSString *issueId = [[feeds objectAtIndex:index] objectForKey:@"name"];
-    issueId = [issueId stringByAppendingString:[[feeds objectAtIndex:index] objectForKey:@"number"]];
-    NSLog(@"issueId %@", issueId);
-    NSString *url=[[feeds objectAtIndex:index] objectForKey:@"content"];
+    NSString *url=[publication content:index];
 
     NKLibrary *nkLib = [NKLibrary sharedLibrary];
-    NKIssue *nkIssue = [nkLib issueWithName:issueId];
-    NSURL *downloadURL = [NSURL URLWithString:[url stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+    NKIssue *nkIssue = [nkLib issueWithName:[publication issueId:index]];
+    NSURL *downloadURL = [NSURL URLWithString:url];
     if(!downloadURL) return;
     NSURLRequest *req = [NSURLRequest requestWithURL:downloadURL];
     NKAssetDownload *assetDownload = [nkIssue addAssetWithRequest:req];
@@ -178,7 +203,14 @@
     [assetDownload setUserInfo:[NSDictionary dictionaryWithObjectsAndKeys:
                                 [NSNumber numberWithInt:index],@"Index",
                                 nil]];
-*/
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    
+    UILabel *download = (UILabel *)[cell viewWithTag:200];
+    download.text=@"1Downloading";
+    NSLog(@"downloading1");
+    
 }
 
 @end

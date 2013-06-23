@@ -45,39 +45,12 @@ NSString *PublicationFailedUpdateNotification = @"PublicationFailedUpdate";
 }
 
 -(void)getIssuesList {
-    NSLog(@"loadIssues 4");
-    /*
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0),
-                   ^{
-                       NSArray *tmpIssues = [NSArray arrayWithContentsOfURL:[NSURL URLWithString:@"http://circulo.almianos.net/newsstand/metuscausa.xml"]];
-                       if(!tmpIssues) {
-                           dispatch_async(dispatch_get_main_queue(), ^{
-                               [[NSNotificationCenter defaultCenter] postNotificationName:PublicationFailedUpdateNotification object:self];
-                           });
-                           
-                       } else {
-                           if(issues) {
-                               //[issues release];
-                           }
-                           issues = [[NSArray alloc] initWithArray:tmpIssues];
-                           ready = YES;
-                           [self addIssuesInNewsstand];
-                           NSLog(@"%@",issues);
-                           dispatch_async(dispatch_get_main_queue(), ^{
-                               [[NSNotificationCenter defaultCenter] postNotificationName:PublicationDidUpdateNotification object:self];
-                           });
-                       }
-                   });
-    */
-    NSLog(@"Load XML");
-
     feeds = [[NSMutableArray alloc] init];
     NSURL *url = [NSURL URLWithString:@"http://circulo.almianos.net/newsstand/metuscausa.xml"];
     parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
     [parser setDelegate:self];
     [parser setShouldResolveExternalEntities:NO];
     [parser parse];
-
 }
 
 -(NSInteger)numberOfIssues {
@@ -93,8 +66,6 @@ NSString *PublicationFailedUpdateNotification = @"PublicationFailedUpdate";
     issueId = [issueId stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     issueId = [issueId stringByAppendingString:[[feeds objectAtIndex:index] objectForKey:@"number"]];
     issueId = [issueId stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    NSLog(@"issueId %@", issueId);
-
     return issueId;
 }
 
@@ -115,12 +86,13 @@ NSString *PublicationFailedUpdateNotification = @"PublicationFailedUpdate";
     NSURL *imageURL = [NSURL URLWithString:[url stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
     NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
     UIImage *image = [UIImage imageWithData:imageData];
-
     return image;
 }
 
 -(NSString *)content:(NSInteger)index {
-    return [[feeds objectAtIndex:index] objectForKey:@"content"];    
+    NSString *url = [[feeds objectAtIndex:index] objectForKey:@"content"];
+    url = [url stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    return url;
 }
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict {
@@ -143,7 +115,6 @@ NSString *PublicationFailedUpdateNotification = @"PublicationFailedUpdate";
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
     
     if ([elementName isEqualToString:@"item"]) {
-        
         [item setObject:name forKey:@"name"];
         [item setObject:number forKey:@"number"];
         [item setObject:title forKey:@"title"];
@@ -175,9 +146,7 @@ NSString *PublicationFailedUpdateNotification = @"PublicationFailedUpdate";
 }
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
-    NSLog(@"parsing element");
     ready = YES;
-    NSLog(@"%@",issues);
     dispatch_async(dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter] postNotificationName:PublicationDidUpdateNotification object:self];
     });
