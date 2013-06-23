@@ -8,23 +8,15 @@
 
 #import "StoreTableViewController.h"
 #import "DetailViewController.h"
+#import "Publication.h"
 
-@interface StoreTableViewController () {
-    NSXMLParser *parser;
-    NSMutableArray *feeds;
-    NSMutableDictionary *item;
-    NSMutableString *name;
-    NSMutableString *number;
-    NSMutableString *title;
-    NSMutableString *description;
-    NSMutableString *date;
-    NSMutableString *cover;
-    NSMutableString *content;
-    NSString *element;
-}
+@interface StoreTableViewController ()
+
 @end
 
 @implementation StoreTableViewController
+
+@synthesize tableView=tableView_;
 
 - (void)awakeFromNib
 {
@@ -33,6 +25,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    publication = [[Publication alloc] init];
     
     // define right bar button items
     refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadIssues)];
@@ -63,26 +57,22 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return feeds.count;
+    return [publication numberOfIssues];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    NSInteger index = indexPath.row;
 
     UILabel *titleLabel = (UILabel *)[cell viewWithTag:101];
-    titleLabel.text=[[feeds objectAtIndex:indexPath.row] objectForKey:@"name"];
+    titleLabel.text=[publication name:index];
 
     UILabel *subtitleLabel = (UILabel *)[cell viewWithTag:102];
-    subtitleLabel.text=[[feeds objectAtIndex:indexPath.row] objectForKey:@"title"];
+    subtitleLabel.text=[publication title:index];
 
-    NSString *issueId = [[feeds objectAtIndex:indexPath.row] objectForKey:@"name"];
-    issueId = [issueId stringByAppendingString:[[feeds objectAtIndex:indexPath.row] objectForKey:@"number"]];
-    NSLog(@"issueId %@", issueId);
-    
     NKLibrary *nkLib = [NKLibrary sharedLibrary];
-    NKIssue *nkIssue = [nkLib issueWithName:issueId];
+    NKIssue *nkIssue = [nkLib issueWithName:[publication issueId:index]];
     UIProgressView *downloadProgress = (UIProgressView *)[cell viewWithTag:102];
-    UILabel *tapLabel = (UILabel *)[cell viewWithTag:103];
     if(nkIssue.status==NKIssueContentStatusAvailable) {
         //subtitleLabel.text=@"TAP TO READ";
         subtitleLabel.alpha=1.0;
@@ -95,92 +85,31 @@
             downloadProgress.alpha=0.0;
             subtitleLabel.alpha=1.0;
             //subtitleLabel.text=@"TAP TO DOWNLOAD";
-            UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-            button.frame = CGRectMake(cell.frame.origin.x + cell.frame.size.width - 100 - 5,
+            
+            UILabel *download = [UILabel new];
+            download.frame = CGRectMake(cell.frame.origin.x + cell.frame.size.width - 100 - 5,
                                       0 + ((cell.frame.size.height - 30) / 2),
                                       100, 30);
-            [button setTitle:@"Download" forState:UIControlStateNormal];
-            [button addTarget:self action:@selector(customActionPressed:) forControlEvents:UIControlEventTouchUpInside];
-            button.backgroundColor= [UIColor clearColor];
-            [cell.contentView addSubview:button];
+            [download setText:@"Download"];
+            download.backgroundColor= [UIColor clearColor];
+            [cell.contentView addSubview:download];
+            
+            
         }
     }
 
-    UIImageView *imageView = (UIImageView *)[cell viewWithTag:103];
-    NSString *url=[[feeds objectAtIndex:indexPath.row] objectForKey:@"cover"];
-    NSURL *imageURL = [NSURL URLWithString:[url stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
-    NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
-    UIImage *image = [UIImage imageWithData:imageData];
-    
-    [imageView setImage:image];
-    
+    UIImageView *imageView = (UIImageView *)[cell viewWithTag:103];    
+    [imageView setImage:[publication coverImage:index]];
+
     return cell;
-}
-
-- (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict {
-    
-    element = elementName;
-    
-    if ([element isEqualToString:@"item"]) {
-        item        = [[NSMutableDictionary alloc] init];
-        name        = [[NSMutableString alloc] init];
-        number      = [[NSMutableString alloc] init];
-        title       = [[NSMutableString alloc] init];
-        description = [[NSMutableString alloc] init];
-        date        = [[NSMutableString alloc] init];
-        cover       = [[NSMutableString alloc] init];
-        content     = [[NSMutableString alloc] init];
-    }
-    
-}
-
-- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
-    
-    if ([elementName isEqualToString:@"item"]) {
-        
-        [item setObject:name forKey:@"name"];
-        [item setObject:number forKey:@"number"];
-        [item setObject:title forKey:@"title"];
-        [item setObject:description forKey:@"description"];
-        [item setObject:date forKey:@"date"];
-        [item setObject:cover forKey:@"cover"];
-        [item setObject:content forKey:@"content"];
-        
-        [feeds addObject:[item copy]];
-    }
-}
-
-- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string {
-    
-    if ([element isEqualToString:@"name"]) {
-        [name appendString:string];
-    } else if ([element isEqualToString:@"number"]) {
-        [number appendString:string];
-    } else if ([element isEqualToString:@"title"]) {
-        [title appendString:string];
-    } else if ([element isEqualToString:@"description"]) {
-        [description appendString:string];
-    } else if ([element isEqualToString:@"date"]) {
-        [date appendString:string];
-    } else if ([element isEqualToString:@"cover"]) {
-        [cover appendString:string];
-    } else if ([element isEqualToString:@"content"]) {
-        [content appendString:string];
-    }
-}
-
-- (void)parserDidEndDocument:(NSXMLParser *)parser {
-    
-    [self.tableView reloadData];
-    
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSString *string = [feeds[indexPath.row] objectForKey: @"link"];
-        [[segue destinationViewController] setUrl:string];
+//        NSString *string = [feeds[indexPath.row] objectForKey: @"link"];
+//        [[segue destinationViewController] setUrl:string];
         
     }
 }
@@ -195,13 +124,61 @@
 #pragma mark - Publisher interaction
 
 -(void)loadIssues {
-    NSLog(@"Load XML");
-    feeds = [[NSMutableArray alloc] init];
-    NSURL *url = [NSURL URLWithString:@"http://circulo.almianos.net/newsstand/metuscausa.xml"];
-    parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
-    [parser setDelegate:self];
-    [parser setShouldResolveExternalEntities:NO];
-    [parser parse];
+    [self.navigationItem setRightBarButtonItem:waitButton];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(publicationReady:) name:PublicationDidUpdateNotification object:publication];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(publicationFailed:) name:PublicationFailedUpdateNotification object:publication];
+    [publication getIssuesList];
+}
+
+-(void)showIssues {
+    [self.navigationItem setRightBarButtonItem:refreshButton];
+    tableView_.alpha=1.0;
+    [tableView_ reloadData];
+}
+
+-(void)publicationReady:(NSNotification *)not {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:PublicationDidUpdateNotification object:publication];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:PublicationFailedUpdateNotification object:publication];
+    [self showIssues];
+}
+
+-(void)publicationFailed:(NSNotification *)not {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:PublicationDidUpdateNotification object:publication];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:PublicationFailedUpdateNotification object:publication];
+    NSLog(@"%@",not);
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                    message:@"Cannot get issues from publisher server."
+                                                   delegate:nil
+                                          cancelButtonTitle:@"Close"
+                                          otherButtonTitles:nil];
+    [alert show];
+    //[alert release];
+    [self.navigationItem setRightBarButtonItem:refreshButton];
+}
+
+#pragma mark - Issue actions
+
+-(void)downloadIssueAtIndex:(NSInteger)index {
+    NSLog(@"download %@", [publication issueId:index]);
+    NSLog(@"content %@", [publication content:index]);
+    
+/*
+    NSString *issueId = [[feeds objectAtIndex:index] objectForKey:@"name"];
+    issueId = [issueId stringByAppendingString:[[feeds objectAtIndex:index] objectForKey:@"number"]];
+    NSLog(@"issueId %@", issueId);
+    NSString *url=[[feeds objectAtIndex:index] objectForKey:@"content"];
+
+    NKLibrary *nkLib = [NKLibrary sharedLibrary];
+    NKIssue *nkIssue = [nkLib issueWithName:issueId];
+    NSURL *downloadURL = [NSURL URLWithString:[url stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+    if(!downloadURL) return;
+    NSURLRequest *req = [NSURLRequest requestWithURL:downloadURL];
+    NKAssetDownload *assetDownload = [nkIssue addAssetWithRequest:req];
+    [assetDownload downloadWithDelegate:self];
+    [assetDownload setUserInfo:[NSDictionary dictionaryWithObjectsAndKeys:
+                                [NSNumber numberWithInt:index],@"Index",
+                                nil]];
+*/
 }
 
 @end

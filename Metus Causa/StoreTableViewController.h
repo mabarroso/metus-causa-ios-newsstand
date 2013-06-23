@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <NewsstandKit/NewsstandKit.h>
+#import "Publication.h"
 
 @interface StoreTableViewController : UITableViewController <NSXMLParserDelegate> {
+    Publication *publication;
     UIBarButtonItem *refreshButton;
     UIBarButtonItem *waitButton;    
 }

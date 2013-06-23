@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		260EDC9C177622B800EEF6BE /* NewsstandKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 260EDC9B177622B800EEF6BE /* NewsstandKit.framework */; };
+		260EDC9F17764AA700EEF6BE /* Publication.m in Sources */ = {isa = PBXBuildFile; fileRef = 260EDC9E17764AA700EEF6BE /* Publication.m */; };
 		263260AA176E635000D5DE6E /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 263260A9176E635000D5DE6E /* MainStoryboard_iPhone.storyboard */; };
 		263260B1176E63F100D5DE6E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 263260AC176E63F100D5DE6E /* AppDelegate.m */; };
 		263260B2176E63F100D5DE6E /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 263260AE176E63F100D5DE6E /* DetailViewController.m */; };
@@ -42,6 +43,8 @@
 /* Begin PBXFileReference section */
 		260EDC98177621CD00EEF6BE /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		260EDC9B177622B800EEF6BE /* NewsstandKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NewsstandKit.framework; path = System/Library/Frameworks/NewsstandKit.framework; sourceTree = SDKROOT; };
+		260EDC9D17764AA700EEF6BE /* Publication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Publication.h; sourceTree = "<group>"; };
+		260EDC9E17764AA700EEF6BE /* Publication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Publication.m; sourceTree = "<group>"; };
 		263260A9176E635000D5DE6E /* MainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		263260AB176E63F100D5DE6E /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		263260AC176E63F100D5DE6E /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -98,8 +101,6 @@
 		26B0D9D0176CB89900654D78 = {
 			isa = PBXGroup;
 			children = (
-				260EDC9B177622B800EEF6BE /* NewsstandKit.framework */,
-				260EDC98177621CD00EEF6BE /* StoreKit.framework */,
 				26B0DA1A176CBDAA00654D78 /* Resources */,
 				26B0D9E2176CB89900654D78 /* Metus Causa */,
 				26B0DA09176CB89900654D78 /* Metus CausaTests */,
@@ -120,6 +121,8 @@
 		26B0D9DB176CB89900654D78 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				260EDC9B177622B800EEF6BE /* NewsstandKit.framework */,
+				260EDC98177621CD00EEF6BE /* StoreKit.framework */,
 				26B0D9DC176CB89900654D78 /* UIKit.framework */,
 				26B0D9DE176CB89900654D78 /* Foundation.framework */,
 				26B0D9E0176CB89900654D78 /* CoreGraphics.framework */,
@@ -139,6 +142,8 @@
 				263260AE176E63F100D5DE6E /* DetailViewController.m */,
 				263260AF176E63F100D5DE6E /* StoreTableViewController.h */,
 				263260B0176E63F100D5DE6E /* StoreTableViewController.m */,
+				260EDC9D17764AA700EEF6BE /* Publication.h */,
+				260EDC9E17764AA700EEF6BE /* Publication.m */,
 				26B0D9E3176CB89900654D78 /* Supporting Files */,
 			);
 			path = "Metus Causa";
@@ -301,6 +306,7 @@
 				263260B1176E63F100D5DE6E /* AppDelegate.m in Sources */,
 				263260B2176E63F100D5DE6E /* DetailViewController.m in Sources */,
 				263260B3176E63F100D5DE6E /* StoreTableViewController.m in Sources */,
+				260EDC9F17764AA700EEF6BE /* Publication.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
