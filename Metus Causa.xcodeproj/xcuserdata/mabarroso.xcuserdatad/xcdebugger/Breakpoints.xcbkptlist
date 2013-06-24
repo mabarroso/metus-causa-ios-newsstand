@@ -73,25 +73,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Metus Causa/StoreTableViewController.m"
-         timestampString = "393714870.681761"
+         timestampString = "393747830.408382"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "94"
-         endingLineNumber = "94"
+         startingLineNumber = "101"
+         endingLineNumber = "101"
          landmarkName = "-tableView:cellForRowAtIndexPath:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Metus Causa/StoreTableViewController.m"
-         timestampString = "393717988.91147"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "128"
-         endingLineNumber = "128"
-         landmarkName = "-shouldPerformSegueWithIdentifier:sender:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

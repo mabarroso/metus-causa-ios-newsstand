@@ -73,27 +73,32 @@
     NKLibrary *nkLib = [NKLibrary sharedLibrary];
     NKIssue *nkIssue = [nkLib issueWithName:[publication issueId:index]];
     UIProgressView *downloadProgress = (UIProgressView *)[cell viewWithTag:102];
+    
+    UILabel *downloadLabel = [UILabel new];
+    downloadLabel.tag = 200;
+    downloadLabel.frame = CGRectMake(cell.frame.origin.x + cell.frame.size.width - 100 - 5,
+                                     0 + ((cell.frame.size.height - 30) / 2),
+                                     100, 30);
+    downloadLabel.backgroundColor= [UIColor clearColor];
+    downloadLabel.alpha=1.0;
+    [cell.contentView addSubview:downloadLabel];
+
     if(nkIssue.status==NKIssueContentStatusAvailable) {
         //subtitleLabel.text=@"TAP TO READ";
         subtitleLabel.alpha=1.0;
         downloadProgress.alpha=0.0;
+        downloadLabel.alpha=0.0;
     } else {
         if(nkIssue.status==NKIssueContentStatusDownloading) {
             downloadProgress.alpha=1.0;
-            subtitleLabel.alpha=0.0;
+            subtitleLabel.alpha=1.0;
+            downloadLabel.alpha=1.0;
+            [downloadLabel setText:@"Downloading"];
         } else {
             downloadProgress.alpha=0.0;
             subtitleLabel.alpha=1.0;
-            //subtitleLabel.text=@"TAP TO DOWNLOAD";
-            
-            UILabel *download = [UILabel new];
-            download.tag = 200;
-            download.frame = CGRectMake(cell.frame.origin.x + cell.frame.size.width - 100 - 5,
-                                      0 + ((cell.frame.size.height - 30) / 2),
-                                      100, 30);
-            [download setText:@"Download"];
-            download.backgroundColor= [UIColor clearColor];
-            [cell.contentView addSubview:download];
+            downloadLabel.alpha=1.0;
+            [downloadLabel setText:@"Download"];
         }
     }
 
@@ -123,10 +128,6 @@
     NKLibrary *nkLib = [NKLibrary sharedLibrary];
     NKIssue *nkIssue = [nkLib issueWithName:[publication issueId:indexPath.row]];
     if(nkIssue.status!=NKIssueContentStatusAvailable) {
-
-        UILabel *download = (UILabel *)[cell viewWithTag:200];
-        download.text=@"1Downloading";
-NSLog(@"downloading");
         return false;
     } else {
         return true;
@@ -205,12 +206,7 @@ NSLog(@"downloading");
                                 nil]];
     
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    
-    UILabel *download = (UILabel *)[cell viewWithTag:200];
-    download.text=@"1Downloading";
-    NSLog(@"downloading1");
-    
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];    
 }
 
 @end
