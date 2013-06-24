@@ -72,19 +72,25 @@
 
     NKLibrary *nkLib = [NKLibrary sharedLibrary];
     NKIssue *nkIssue = [nkLib issueWithName:[publication issueId:index]];
-    UIProgressView *downloadProgress = (UIProgressView *)[cell viewWithTag:102];
+
+    UIProgressView *downloadProgress = [UIProgressView new];
+    downloadProgress.tag = 201;
+    downloadProgress.frame = CGRectMake(cell.frame.origin.x + cell.frame.size.width - 100 - 5,
+                                        5,
+                                        100, 30);
+    downloadProgress.progress = 1.f*70/100;
+    [cell.contentView addSubview:downloadProgress];
     
     UILabel *downloadLabel = [UILabel new];
-    downloadLabel.tag = 200;
+    downloadLabel.tag = 202;
+    [downloadLabel setText:@"Download"];
     downloadLabel.frame = CGRectMake(cell.frame.origin.x + cell.frame.size.width - 100 - 5,
                                      0 + ((cell.frame.size.height - 30) / 2),
                                      100, 30);
     downloadLabel.backgroundColor= [UIColor clearColor];
-    downloadLabel.alpha=1.0;
     [cell.contentView addSubview:downloadLabel];
 
     if(nkIssue.status==NKIssueContentStatusAvailable) {
-        //subtitleLabel.text=@"TAP TO READ";
         subtitleLabel.alpha=1.0;
         downloadProgress.alpha=0.0;
         downloadLabel.alpha=0.0;
@@ -92,13 +98,11 @@
         if(nkIssue.status==NKIssueContentStatusDownloading) {
             downloadProgress.alpha=1.0;
             subtitleLabel.alpha=1.0;
-            downloadLabel.alpha=1.0;
-            [downloadLabel setText:@"Downloading"];
+            downloadLabel.alpha=0.0;
         } else {
             downloadProgress.alpha=0.0;
             subtitleLabel.alpha=1.0;
             downloadLabel.alpha=1.0;
-            [downloadLabel setText:@"Download"];
         }
     }
 
