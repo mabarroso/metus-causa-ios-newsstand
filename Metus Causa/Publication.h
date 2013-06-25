@@ -26,5 +26,8 @@ extern  NSString *PublicationFailedUpdateNotification;
 -(NSString *)title:(NSInteger)index;
 -(UIImage *)coverImage:(NSInteger)index;
 -(NSString *)content:(NSInteger)index;
+-(UIImage *)coverImageForIssue:(NKIssue *)nkIssue;
+-(NSString *)downloadPathForIssue:(NKIssue *)nkIssue;
+-(void)addAllIssuesInNewsstand;
 
 @end

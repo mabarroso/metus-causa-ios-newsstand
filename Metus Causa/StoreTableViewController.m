@@ -78,7 +78,7 @@
     downloadProgress.frame = CGRectMake(cell.frame.origin.x + cell.frame.size.width - 100 - 5,
                                         5,
                                         100, 30);
-    downloadProgress.progress = 1.f*70/100;
+    downloadProgress.progress = 0;
     [cell.contentView addSubview:downloadProgress];
     
     UILabel *downloadLabel = [UILabel new];
@@ -91,18 +91,18 @@
     [cell.contentView addSubview:downloadLabel];
 
     if(nkIssue.status==NKIssueContentStatusAvailable) {
-        subtitleLabel.alpha=1.0;
         downloadProgress.alpha=0.0;
         downloadLabel.alpha=0.0;
+        downloadLabel.hidden = true;
     } else {
         if(nkIssue.status==NKIssueContentStatusDownloading) {
             downloadProgress.alpha=1.0;
-            subtitleLabel.alpha=1.0;
             downloadLabel.alpha=0.0;
+            downloadLabel.hidden = true;
         } else {
             downloadProgress.alpha=0.0;
-            subtitleLabel.alpha=1.0;
             downloadLabel.alpha=1.0;
+            downloadLabel.hidden = false;
         }
     }
 
@@ -152,7 +152,13 @@
 
 // remove all downloaded magazines
 -(void)trashContent {
-    NSLog(@"TODO: trashContent");
+    NKLibrary *nkLib = [NKLibrary sharedLibrary];
+    NSLog(@"%@",nkLib.issues);
+    [nkLib.issues enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [nkLib removeIssue:(NKIssue *)obj];
+    }];
+    [publication addAllIssuesInNewsstand];
+    [self.tableView reloadData];
 }
 
 #pragma mark - Publisher interaction
@@ -166,8 +172,8 @@
 
 -(void)showIssues {
     [self.navigationItem setRightBarButtonItem:refreshButton];
-    tableView_.alpha=1.0;
-    [tableView_ reloadData];
+    self.tableView.alpha=1.0;
+    [self.tableView reloadData];
 }
 
 -(void)publicationReady:(NSNotification *)not {
@@ -208,9 +214,54 @@
     [assetDownload setUserInfo:[NSDictionary dictionaryWithObjectsAndKeys:
                                 [NSNumber numberWithInt:index],@"Index",
                                 nil]];
+    [self.tableView reloadData];
+}
+
+#pragma mark - NSURLConnectionDownloadDelegate
+
+-(void)updateProgressOfConnection:(NSURLConnection *)connection withTotalBytesWritten:(long long)totalBytesWritten expectedTotalBytes:(long long)expectedTotalBytes {
+    // get asset
+    NKAssetDownload *dnl = connection.newsstandAssetDownload;
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:[[dnl.userInfo objectForKey:@"Index"] intValue] inSection:0]];
     
-    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];    
+    UIProgressView *progressView = (UIProgressView *)[cell viewWithTag:201];
+    progressView.alpha=1.0;
+    [[cell viewWithTag:201] setAlpha:0.0];
+    progressView.progress=1.f*totalBytesWritten/expectedTotalBytes;
+    [self.tableView reloadData];
+}
+
+-(void)connection:(NSURLConnection *)connection didWriteData:(long long)bytesWritten totalBytesWritten:(long long)totalBytesWritten expectedTotalBytes:(long long)expectedTotalBytes {
+    [self updateProgressOfConnection:connection withTotalBytesWritten:totalBytesWritten expectedTotalBytes:expectedTotalBytes];
+    [self.tableView reloadData];
+}
+
+-(void)connectionDidResumeDownloading:(NSURLConnection *)connection totalBytesWritten:(long long)totalBytesWritten expectedTotalBytes:(long long)expectedTotalBytes {
+    NSLog(@"Resume downloading %f",1.f*totalBytesWritten/expectedTotalBytes);
+    [self updateProgressOfConnection:connection withTotalBytesWritten:totalBytesWritten expectedTotalBytes:expectedTotalBytes];
+    [self.tableView reloadData];
+}
+
+-(void)connectionDidFinishDownloading:(NSURLConnection *)connection destinationURL:(NSURL *)destinationURL {
+    // copy file to destination URL
+    NKAssetDownload *dnl = connection.newsstandAssetDownload;
+    NKIssue *nkIssue = dnl.issue;
+    NSString *contentPath = [publication downloadPathForIssue:nkIssue];
+    NSError *moveError=nil;
+    NSLog(@"File is being copied to %@",contentPath);
+    
+    if([[NSFileManager defaultManager] moveItemAtPath:[destinationURL path] toPath:contentPath error:&moveError]==NO) {
+        NSLog(@"Error copying file from %@ to %@",destinationURL,contentPath);
+    }
+    
+    // update the Newsstand icon
+    UIImage *img = [publication coverImageForIssue:nkIssue];
+    if(img) {
+        [[UIApplication sharedApplication] setNewsstandIconImage:img];
+        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:1];
+    }
+    
+    [self.tableView reloadData];
 }
 
 @end

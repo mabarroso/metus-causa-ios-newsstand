@@ -12,3 +12,18 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 #endif
+
+// User sub-dirs
+#define DocumentsDirectory [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, \
+NSUserDomainMask, YES) objectAtIndex:0]
+
+#define LibraryDirectory [NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, \
+NSUserDomainMask, YES) objectAtIndex:0]
+
+#define DocumentsSubDirectory(dir) [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, \
+NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingString:dir]
+
+#define LibrarySubDirectory(dir) [[NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, \
+NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingString:dir]
+
+#define CacheDirectory [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0]

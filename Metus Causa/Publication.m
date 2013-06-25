@@ -81,6 +81,10 @@ NSString *PublicationFailedUpdateNotification = @"PublicationFailedUpdate";
     return [[feeds objectAtIndex:index] objectForKey:@"title"];
 }
 
+-(NSString *)date:(NSInteger)index {
+    return [[feeds objectAtIndex:index] objectForKey:@"date"];
+}
+
 -(UIImage *)coverImage:(NSInteger)index {
     NSString *url=[[feeds objectAtIndex:index] objectForKey:@"cover"];
     NSURL *imageURL = [NSURL URLWithString:[url stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
@@ -124,6 +128,8 @@ NSString *PublicationFailedUpdateNotification = @"PublicationFailedUpdate";
         [item setObject:content forKey:@"content"];
         
         [feeds addObject:[item copy]];
+        
+        [self addIssuesInNewsstand:(feeds.count-1)];
     }
 }
 
@@ -150,6 +156,47 @@ NSString *PublicationFailedUpdateNotification = @"PublicationFailedUpdate";
     dispatch_async(dispatch_get_main_queue(), ^{
         [[NSNotificationCenter defaultCenter] postNotificationName:PublicationDidUpdateNotification object:self];
     });
+}
+
+-(void)addIssuesInNewsstand:(NSInteger)index {
+    NKLibrary *nkLib = [NKLibrary sharedLibrary];
+    NSString *issueName = [self issueId:index];
+    NKIssue *nkIssue = [nkLib issueWithName:issueName];
+    if(!nkIssue) {
+        // Convert string to date object
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"yyyy-MM-dd"];
+        NSString *issueDateString= [[self date:index] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        NSDate *issueDate = [dateFormat dateFromString:issueDateString];
+            
+        nkIssue = [nkLib addIssueWithName:issueName date:issueDate];
+    }
+    NSLog(@"Issue: %@",nkIssue);
+}
+
+-(void)addAllIssuesInNewsstand {
+    NSInteger n = [self numberOfIssues];
+    for (NSInteger i = 0; i < n; i++) {
+        [self addIssuesInNewsstand:i];
+    }
+}
+
+-(UIImage *)coverImageForIssue:(NKIssue *)nkIssue {
+    NSString *name = nkIssue.name;
+    for(NSDictionary *issueInfo in issues) {
+        if([name isEqualToString:[issueInfo objectForKey:@"Name"]]) {
+            NSString *coverPath = [issueInfo objectForKey:@"Cover"];
+            NSString *coverName = [coverPath lastPathComponent];
+            NSString *coverFilePath = [CacheDirectory stringByAppendingPathComponent:coverName];
+            UIImage *image = [UIImage imageWithContentsOfFile:coverFilePath];
+            return image;
+        }
+    }
+    return nil;
+}
+
+-(NSString *)downloadPathForIssue:(NKIssue *)nkIssue {
+    return [[nkIssue.contentURL path] stringByAppendingPathComponent:@"magazine.pdf"];
 }
 
 @end
