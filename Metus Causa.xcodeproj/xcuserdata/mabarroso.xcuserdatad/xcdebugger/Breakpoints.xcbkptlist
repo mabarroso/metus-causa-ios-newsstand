@@ -73,11 +73,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Metus Causa/StoreTableViewController.m"
-         timestampString = "393883890.672888"
+         timestampString = "393889715.245639"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "214"
-         endingLineNumber = "214"
+         startingLineNumber = "227"
+         endingLineNumber = "227"
          landmarkName = "-downloadIssueAtIndex:"
          landmarkType = "5">
       </FileBreakpoint>

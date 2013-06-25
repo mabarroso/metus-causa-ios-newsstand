@@ -62,6 +62,30 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+/*
+    UIProgressView *downloadProgress;
+    UILabel *downloadLabel;
+    if (cell == nil) {
+        NSLog(@"Init");
+        downloadProgress = [UIProgressView new];
+        downloadProgress.tag = 201;
+        downloadProgress.frame = CGRectMake(cell.frame.origin.x + cell.frame.size.width - 100 - 5,
+                                            5,
+                                            100, 30);
+        downloadProgress.progress = 0;
+        [cell.contentView addSubview:downloadProgress];
+        
+        downloadLabel = [UILabel new];
+        downloadLabel.tag = 202;
+        [downloadLabel setText:@"Download"];
+        downloadLabel.frame = CGRectMake(cell.frame.origin.x + cell.frame.size.width - 100 - 5,
+                                         0 + ((cell.frame.size.height - 30) / 2),
+                                         100, 30);
+        downloadLabel.backgroundColor= [UIColor clearColor];
+        [cell.contentView addSubview:downloadLabel];
+    }
+*/
+    
     NSInteger index = indexPath.row;
 
     UILabel *titleLabel = (UILabel *)[cell viewWithTag:101];
@@ -70,25 +94,17 @@
     UILabel *subtitleLabel = (UILabel *)[cell viewWithTag:102];
     subtitleLabel.text=[publication title:index];
 
+    UIImageView *imageView = (UIImageView *)[cell viewWithTag:103];
+    [imageView setImage:[publication coverImage:index]];
+    
+    UIProgressView *downloadProgress = (UIProgressView *)[cell viewWithTag:104];
+
+    UILabel *downloadLabel = (UILabel *)[cell viewWithTag:105];
+    [downloadLabel setText:@"Download"];
+
+
     NKLibrary *nkLib = [NKLibrary sharedLibrary];
     NKIssue *nkIssue = [nkLib issueWithName:[publication issueId:index]];
-
-    UIProgressView *downloadProgress = [UIProgressView new];
-    downloadProgress.tag = 201;
-    downloadProgress.frame = CGRectMake(cell.frame.origin.x + cell.frame.size.width - 100 - 5,
-                                        5,
-                                        100, 30);
-    downloadProgress.progress = 0;
-    [cell.contentView addSubview:downloadProgress];
-    
-    UILabel *downloadLabel = [UILabel new];
-    downloadLabel.tag = 202;
-    [downloadLabel setText:@"Download"];
-    downloadLabel.frame = CGRectMake(cell.frame.origin.x + cell.frame.size.width - 100 - 5,
-                                     0 + ((cell.frame.size.height - 30) / 2),
-                                     100, 30);
-    downloadLabel.backgroundColor= [UIColor clearColor];
-    [cell.contentView addSubview:downloadLabel];
 
     if(nkIssue.status==NKIssueContentStatusAvailable) {
         downloadProgress.alpha=0.0;
@@ -105,9 +121,6 @@
             downloadLabel.hidden = false;
         }
     }
-
-    UIImageView *imageView = (UIImageView *)[cell viewWithTag:103];    
-    [imageView setImage:[publication coverImage:index]];
 
     return cell;
 }
