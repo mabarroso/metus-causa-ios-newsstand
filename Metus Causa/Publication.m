@@ -70,19 +70,19 @@ NSString *PublicationFailedUpdateNotification = @"PublicationFailedUpdate";
 }
 
 -(NSString *)name:(NSInteger)index {
-    return [[feeds objectAtIndex:index] objectForKey:@"name"];
+    return [[[feeds objectAtIndex:index] objectForKey:@"name"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
 -(NSString *)number:(NSInteger)index {
-    return [[feeds objectAtIndex:index] objectForKey:@"number"];
+    return [[[feeds objectAtIndex:index] objectForKey:@"number"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
 -(NSString *)title:(NSInteger)index {
-    return [[feeds objectAtIndex:index] objectForKey:@"title"];
+    return [[[feeds objectAtIndex:index] objectForKey:@"title"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
 -(NSString *)date:(NSInteger)index {
-    return [[feeds objectAtIndex:index] objectForKey:@"date"];
+    return [[[feeds objectAtIndex:index] objectForKey:@"date"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
 -(UIImage *)coverImage:(NSInteger)index {
@@ -113,7 +113,6 @@ NSString *PublicationFailedUpdateNotification = @"PublicationFailedUpdate";
         cover       = [[NSMutableString alloc] init];
         content     = [[NSMutableString alloc] init];
     }
-    
 }
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
