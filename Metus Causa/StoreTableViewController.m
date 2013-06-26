@@ -69,8 +69,7 @@
     name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     name = [name stringByAppendingString:@" #"];
     name = [name stringByAppendingString:[publication number:index]];
-    name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    
+    name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];    
     titleLabel.text=name;
 
     UILabel *subtitleLabel = (UILabel *)[cell viewWithTag:102];
@@ -84,6 +83,9 @@
     UILabel *downloadLabel = (UILabel *)[cell viewWithTag:105];
     [downloadLabel setText:@"Download"];
 
+    UILabel *dateLabel = (UILabel *)[cell viewWithTag:106];
+    dateLabel.text=[publication date:index];
+    
 
     NKLibrary *nkLib = [NKLibrary sharedLibrary];
     NKIssue *nkIssue = [nkLib issueWithName:[publication issueId:index]];

@@ -24,6 +24,7 @@ extern  NSString *PublicationFailedUpdateNotification;
 -(NSString *)name:(NSInteger)index;
 -(NSString *)number:(NSInteger)index;
 -(NSString *)title:(NSInteger)index;
+-(NSString *)date:(NSInteger)index;
 -(UIImage *)coverImage:(NSInteger)index;
 -(NSString *)content:(NSInteger)index;
 -(UIImage *)coverImageForIssue:(NKIssue *)nkIssue;

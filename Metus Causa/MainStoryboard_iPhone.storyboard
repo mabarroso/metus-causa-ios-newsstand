@@ -63,13 +63,22 @@
                                                 <constraint firstAttribute="width" constant="150" id="XtI-Ce-LWT"/>
                                             </constraints>
                                         </progressView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="105" contentMode="left" text="Download" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CN0-Ao-hVy">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="105" contentMode="left" text="Download" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CN0-Ao-hVy">
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="15" id="MxF-tx-76x"/>
                                                 <constraint firstAttribute="width" constant="82" id="R2N-PK-lpJ"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" tag="106" contentMode="left" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7lq-fG-g9w">
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="7zk-wg-7tF"/>
+                                                <constraint firstAttribute="width" constant="94" id="gQb-uV-V14"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                     </subviews>
@@ -82,10 +91,12 @@
                                     <constraint firstItem="kFJ-vM-VWi" firstAttribute="top" secondItem="lJ0-d7-vTF" secondAttribute="top" constant="8" id="6Ho-ls-eL2"/>
                                     <constraint firstAttribute="trailing" secondItem="kFJ-vM-VWi" secondAttribute="trailing" constant="4" id="8Ao-vW-5p9"/>
                                     <constraint firstItem="TwP-X6-pfR" firstAttribute="top" secondItem="lJ0-d7-vTF" secondAttribute="top" constant="20" type="default" id="B9a-qA-VOh"/>
-                                    <constraint firstAttribute="trailing" secondItem="CN0-Ao-hVy" secondAttribute="trailing" constant="5" id="BuU-tS-Upk"/>
                                     <constraint firstItem="TwP-X6-pfR" firstAttribute="leading" secondItem="lJ0-d7-vTF" secondAttribute="leading" constant="32" id="KYC-SW-rYS"/>
+                                    <constraint firstAttribute="trailing" secondItem="7lq-fG-g9w" secondAttribute="trailing" constant="6" id="SDQ-Yb-DYP"/>
                                     <constraint firstItem="UG3-L7-Lsb" firstAttribute="leading" secondItem="lJ0-d7-vTF" secondAttribute="leading" constant="1" id="b6j-4u-zQj"/>
                                     <constraint firstItem="Yzp-qS-AjI" firstAttribute="leading" secondItem="lJ0-d7-vTF" secondAttribute="leading" constant="30" id="dc6-WI-uEe"/>
+                                    <constraint firstAttribute="trailing" secondItem="CN0-Ao-hVy" secondAttribute="trailing" constant="5" id="gCh-WS-s1g"/>
+                                    <constraint firstItem="7lq-fG-g9w" firstAttribute="top" secondItem="lJ0-d7-vTF" secondAttribute="top" constant="20" type="default" id="hTG-Pv-9Jj"/>
                                     <constraint firstItem="CN0-Ao-hVy" firstAttribute="top" secondItem="lJ0-d7-vTF" secondAttribute="top" constant="4" id="xBF-R9-9He"/>
                                 </constraints>
                                 <connections>
