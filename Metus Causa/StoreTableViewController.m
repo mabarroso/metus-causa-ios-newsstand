@@ -61,31 +61,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-/*
-    UIProgressView *downloadProgress;
-    UILabel *downloadLabel;
-    if (cell == nil) {
-        NSLog(@"Init");
-        downloadProgress = [UIProgressView new];
-        downloadProgress.tag = 201;
-        downloadProgress.frame = CGRectMake(cell.frame.origin.x + cell.frame.size.width - 100 - 5,
-                                            5,
-                                            100, 30);
-        downloadProgress.progress = 0;
-        [cell.contentView addSubview:downloadProgress];
-        
-        downloadLabel = [UILabel new];
-        downloadLabel.tag = 202;
-        [downloadLabel setText:@"Download"];
-        downloadLabel.frame = CGRectMake(cell.frame.origin.x + cell.frame.size.width - 100 - 5,
-                                         0 + ((cell.frame.size.height - 30) / 2),
-                                         100, 30);
-        downloadLabel.backgroundColor= [UIColor clearColor];
-        [cell.contentView addSubview:downloadLabel];
-    }
-*/
-    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];    
     NSInteger index = indexPath.row;
 
     UILabel *titleLabel = (UILabel *)[cell viewWithTag:101];
@@ -107,18 +83,16 @@
     NKIssue *nkIssue = [nkLib issueWithName:[publication issueId:index]];
 
     if(nkIssue.status==NKIssueContentStatusAvailable) {
-        downloadProgress.alpha=0.0;
-        downloadLabel.alpha=0.0;
-        downloadLabel.hidden = true;
+        downloadProgress.alpha = 0.0;
+        downloadLabel.alpha = 0.0;
     } else {
         if(nkIssue.status==NKIssueContentStatusDownloading) {
-            downloadProgress.alpha=1.0;
-            downloadLabel.alpha=0.0;
-            downloadLabel.hidden = true;
+            downloadProgress.alpha = 1.0;
+            downloadLabel.alpha = 0.0;
         } else {
-            downloadProgress.alpha=0.0;
-            downloadLabel.alpha=1.0;
-            downloadLabel.hidden = false;
+            downloadProgress.alpha = 0.0;
+            downloadLabel.alpha = 1.0;
+            downloadProgress.progress = 0;
         }
     }
 
@@ -237,9 +211,9 @@
     NKAssetDownload *dnl = connection.newsstandAssetDownload;
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:[[dnl.userInfo objectForKey:@"Index"] intValue] inSection:0]];
     
-    UIProgressView *progressView = (UIProgressView *)[cell viewWithTag:201];
+    UIProgressView *progressView = (UIProgressView *)[cell viewWithTag:104];
     progressView.alpha=1.0;
-    [[cell viewWithTag:201] setAlpha:0.0];
+    [[cell viewWithTag:104] setAlpha:0.0];
     progressView.progress=1.f*totalBytesWritten/expectedTotalBytes;
     [self.tableView reloadData];
 }
