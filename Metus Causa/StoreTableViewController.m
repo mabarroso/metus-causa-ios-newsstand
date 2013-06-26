@@ -65,7 +65,13 @@
     NSInteger index = indexPath.row;
 
     UILabel *titleLabel = (UILabel *)[cell viewWithTag:101];
-    titleLabel.text=[publication name:index];
+    NSString *name = [publication name:index];
+    name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    name = [name stringByAppendingString:@" #"];
+    name = [name stringByAppendingString:[publication number:index]];
+    name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    titleLabel.text=name;
 
     UILabel *subtitleLabel = (UILabel *)[cell viewWithTag:102];
     subtitleLabel.text=[publication title:index];
