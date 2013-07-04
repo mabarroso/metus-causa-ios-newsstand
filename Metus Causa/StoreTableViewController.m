@@ -129,7 +129,7 @@
     if(nkIssue.status!=NKIssueContentStatusAvailable) {
         return false;
     } else {
-        return true;
+        return false;
     }
 }
 
@@ -139,7 +139,6 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
 //        NSString *string = [feeds[indexPath.row] objectForKey: @"link"];
 //        [[segue destinationViewController] setUrl:string];
-        
     }
 }
 
