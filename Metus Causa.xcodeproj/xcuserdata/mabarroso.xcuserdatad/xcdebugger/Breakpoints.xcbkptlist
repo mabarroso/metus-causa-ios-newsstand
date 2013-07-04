@@ -73,11 +73,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Metus Causa/StoreTableViewController.m"
-         timestampString = "393919978.087626"
+         timestampString = "394318031.83117"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "209"
-         endingLineNumber = "209"
+         startingLineNumber = "217"
+         endingLineNumber = "217"
          landmarkName = "-downloadIssueAtIndex:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -170,6 +170,19 @@
          startingLineNumber = "164"
          endingLineNumber = "164"
          landmarkName = "-addIssuesInNewsstand:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Metus Causa/StoreTableViewController.m"
+         timestampString = "394647544.565501"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "200"
+         endingLineNumber = "200"
+         landmarkName = "-readIssue:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

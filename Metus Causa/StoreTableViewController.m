@@ -114,7 +114,7 @@
     NKIssue *nkIssue = [nkLib issueWithName:[publication issueId:indexPath.row]];
     // NSURL *downloadURL = [nkIssue contentURL];
     if(nkIssue.status==NKIssueContentStatusAvailable) {
-//        [self readIssue:nkIssue];
+        [self readIssue:nkIssue];
     } else if(nkIssue.status==NKIssueContentStatusNone) {
         [self downloadIssueAtIndex:indexPath.row];
     }
@@ -193,6 +193,14 @@
 
 #pragma mark - Issue actions
 
+-(void)readIssue:(NKIssue *)nkIssue {
+    [[NKLibrary sharedLibrary] setCurrentlyReadingIssue:nkIssue];
+    QLPreviewController *previewController = [[QLPreviewController alloc] init];
+    previewController.delegate=self;
+    previewController.dataSource=self;
+    [self presentModalViewController:previewController animated:YES];
+}
+
 -(void)downloadIssueAtIndex:(NSInteger)index {
     NSLog(@"download %@", [publication issueId:index]);
     NSLog(@"content %@", [publication content:index]);
@@ -257,6 +265,19 @@
     }
     
     [self.tableView reloadData];
+}
+
+#pragma mark - QuickLook
+
+- (NSInteger) numberOfPreviewItemsInPreviewController: (QLPreviewController *) controller {
+    return 1;
+}
+
+- (id <QLPreviewItem>) previewController: (QLPreviewController *) controller previewItemAtIndex: (NSInteger) index {
+    NKIssue *nkIssue = [[NKLibrary sharedLibrary] currentlyReadingIssue];
+    NSURL *issueURL = [NSURL fileURLWithPath:[publication downloadPathForIssue:nkIssue]];
+    NSLog(@"Issue URL: %@",issueURL);
+    return issueURL;
 }
 
 @end

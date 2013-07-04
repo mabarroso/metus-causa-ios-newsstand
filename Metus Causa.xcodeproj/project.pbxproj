@@ -13,6 +13,7 @@
 		263260B1176E63F100D5DE6E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 263260AC176E63F100D5DE6E /* AppDelegate.m */; };
 		263260B2176E63F100D5DE6E /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 263260AE176E63F100D5DE6E /* DetailViewController.m */; };
 		263260B3176E63F100D5DE6E /* StoreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 263260B0176E63F100D5DE6E /* StoreTableViewController.m */; };
+		26A2E01D1780D3A400E2929D /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26A2E01C1780D3A400E2929D /* QuickLook.framework */; };
 		26B0D9DD176CB89900654D78 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26B0D9DC176CB89900654D78 /* UIKit.framework */; };
 		26B0D9DF176CB89900654D78 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26B0D9DE176CB89900654D78 /* Foundation.framework */; };
 		26B0D9E1176CB89900654D78 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26B0D9E0176CB89900654D78 /* CoreGraphics.framework */; };
@@ -52,6 +53,7 @@
 		263260AE176E63F100D5DE6E /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		263260AF176E63F100D5DE6E /* StoreTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreTableViewController.h; sourceTree = "<group>"; };
 		263260B0176E63F100D5DE6E /* StoreTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreTableViewController.m; sourceTree = "<group>"; };
+		26A2E01C1780D3A400E2929D /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
 		26B0D9D9176CB89900654D78 /* Metus Causa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Metus Causa.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		26B0D9DC176CB89900654D78 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		26B0D9DE176CB89900654D78 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -78,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26A2E01D1780D3A400E2929D /* QuickLook.framework in Frameworks */,
 				260EDC9C177622B800EEF6BE /* NewsstandKit.framework in Frameworks */,
 				26B0D9DD176CB89900654D78 /* UIKit.framework in Frameworks */,
 				26B0D9DF176CB89900654D78 /* Foundation.framework in Frameworks */,
@@ -121,6 +124,7 @@
 		26B0D9DB176CB89900654D78 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				26A2E01C1780D3A400E2929D /* QuickLook.framework */,
 				260EDC9B177622B800EEF6BE /* NewsstandKit.framework */,
 				260EDC98177621CD00EEF6BE /* StoreKit.framework */,
 				26B0D9DC176CB89900654D78 /* UIKit.framework */,
