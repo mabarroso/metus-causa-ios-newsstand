@@ -29,6 +29,7 @@
 		26B0DA0E176CB89900654D78 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 26B0DA0C176CB89900654D78 /* InfoPlist.strings */; };
 		26B0DA11176CB89900654D78 /* Metus_CausaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 26B0DA10176CB89900654D78 /* Metus_CausaTests.m */; };
 		26B0DA1C176CBDCC00654D78 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 26B0DA1B176CBDCC00654D78 /* icon.png */; };
+		26E4291E17887875002DF7C8 /* StoreCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 26E4291D17887875002DF7C8 /* StoreCollectionViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,8 @@
 		26B0DA0F176CB89900654D78 /* Metus_CausaTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Metus_CausaTests.h; sourceTree = "<group>"; };
 		26B0DA10176CB89900654D78 /* Metus_CausaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Metus_CausaTests.m; sourceTree = "<group>"; };
 		26B0DA1B176CBDCC00654D78 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		26E4291C17887875002DF7C8 /* StoreCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StoreCollectionViewController.h; sourceTree = "<group>"; };
+		26E4291D17887875002DF7C8 /* StoreCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoreCollectionViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +147,8 @@
 				263260AC176E63F100D5DE6E /* AppDelegate.m */,
 				263260AD176E63F100D5DE6E /* DetailViewController.h */,
 				263260AE176E63F100D5DE6E /* DetailViewController.m */,
+				26E4291C17887875002DF7C8 /* StoreCollectionViewController.h */,
+				26E4291D17887875002DF7C8 /* StoreCollectionViewController.m */,
 				263260AF176E63F100D5DE6E /* StoreTableViewController.h */,
 				263260B0176E63F100D5DE6E /* StoreTableViewController.m */,
 				260EDC9D17764AA700EEF6BE /* Publication.h */,
@@ -311,6 +316,7 @@
 				263260B2176E63F100D5DE6E /* DetailViewController.m in Sources */,
 				263260B3176E63F100D5DE6E /* StoreTableViewController.m in Sources */,
 				260EDC9F17764AA700EEF6BE /* Publication.m in Sources */,
+				26E4291E17887875002DF7C8 /* StoreCollectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
