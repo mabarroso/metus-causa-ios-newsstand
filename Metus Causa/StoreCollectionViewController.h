@@ -11,10 +11,12 @@
 #import <QuickLook/QuickLook.h>
 #import "Publication.h"
 
-@interface StoreCollectionViewController : UICollectionViewController <NSXMLParserDelegate,QLPreviewControllerDataSource,QLPreviewControllerDelegate> {
+@interface StoreCollectionViewController : UICollectionViewController <NSXMLParserDelegate> {
     Publication *publication;
     UIBarButtonItem *refreshButton;
     UIBarButtonItem *waitButton;
 }
+
+@property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @end

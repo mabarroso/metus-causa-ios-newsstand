@@ -11,7 +11,6 @@
 #import <QuickLook/QuickLook.h>
 #import "Publication.h"
 
-
 @interface StoreTableViewController : UITableViewController <NSXMLParserDelegate,QLPreviewControllerDataSource,QLPreviewControllerDelegate> {
     Publication *publication;
     UIBarButtonItem *refreshButton;
