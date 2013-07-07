@@ -10,7 +10,7 @@
 		260EDC9C177622B800EEF6BE /* NewsstandKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 260EDC9B177622B800EEF6BE /* NewsstandKit.framework */; };
 		260EDC9F17764AA700EEF6BE /* Publication.m in Sources */ = {isa = PBXBuildFile; fileRef = 260EDC9E17764AA700EEF6BE /* Publication.m */; };
 		2616428C178959B800DE6832 /* NibCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2616428B178959B800DE6832 /* NibCell.xib */; };
-		2616428E17897F7100DE6832 /* download.png in Resources */ = {isa = PBXBuildFile; fileRef = 2616428D17897F7100DE6832 /* download.png */; };
+		261642901789E7F600DE6832 /* download.png in Resources */ = {isa = PBXBuildFile; fileRef = 2616428F1789E7F600DE6832 /* download.png */; };
 		263260AA176E635000D5DE6E /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 263260A9176E635000D5DE6E /* MainStoryboard_iPhone.storyboard */; };
 		263260B1176E63F100D5DE6E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 263260AC176E63F100D5DE6E /* AppDelegate.m */; };
 		263260B2176E63F100D5DE6E /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 263260AE176E63F100D5DE6E /* DetailViewController.m */; };
@@ -50,7 +50,7 @@
 		260EDC9D17764AA700EEF6BE /* Publication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Publication.h; sourceTree = "<group>"; };
 		260EDC9E17764AA700EEF6BE /* Publication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Publication.m; sourceTree = "<group>"; };
 		2616428B178959B800DE6832 /* NibCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NibCell.xib; path = ../NibCell.xib; sourceTree = "<group>"; };
-		2616428D17897F7100DE6832 /* download.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = download.png; path = ../../../Downloads/download.png; sourceTree = "<group>"; };
+		2616428F1789E7F600DE6832 /* download.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = download.png; sourceTree = "<group>"; };
 		263260A9176E635000D5DE6E /* MainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		263260AB176E63F100D5DE6E /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		263260AC176E63F100D5DE6E /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -199,7 +199,7 @@
 		26B0DA1A176CBDAA00654D78 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				2616428D17897F7100DE6832 /* download.png */,
+				2616428F1789E7F600DE6832 /* download.png */,
 				26B0DA1B176CBDCC00654D78 /* icon.png */,
 			);
 			name = Resources;
@@ -284,7 +284,7 @@
 				26B0DA1C176CBDCC00654D78 /* icon.png in Resources */,
 				263260AA176E635000D5DE6E /* MainStoryboard_iPhone.storyboard in Resources */,
 				2616428C178959B800DE6832 /* NibCell.xib in Resources */,
-				2616428E17897F7100DE6832 /* download.png in Resources */,
+				261642901789E7F600DE6832 /* download.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
