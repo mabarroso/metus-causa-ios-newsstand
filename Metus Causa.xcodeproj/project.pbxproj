@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		260EDC9C177622B800EEF6BE /* NewsstandKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 260EDC9B177622B800EEF6BE /* NewsstandKit.framework */; };
 		260EDC9F17764AA700EEF6BE /* Publication.m in Sources */ = {isa = PBXBuildFile; fileRef = 260EDC9E17764AA700EEF6BE /* Publication.m */; };
+		2616428C178959B800DE6832 /* NibCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2616428B178959B800DE6832 /* NibCell.xib */; };
 		263260AA176E635000D5DE6E /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 263260A9176E635000D5DE6E /* MainStoryboard_iPhone.storyboard */; };
 		263260B1176E63F100D5DE6E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 263260AC176E63F100D5DE6E /* AppDelegate.m */; };
 		263260B2176E63F100D5DE6E /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 263260AE176E63F100D5DE6E /* DetailViewController.m */; };
@@ -47,6 +48,7 @@
 		260EDC9B177622B800EEF6BE /* NewsstandKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NewsstandKit.framework; path = System/Library/Frameworks/NewsstandKit.framework; sourceTree = SDKROOT; };
 		260EDC9D17764AA700EEF6BE /* Publication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Publication.h; sourceTree = "<group>"; };
 		260EDC9E17764AA700EEF6BE /* Publication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Publication.m; sourceTree = "<group>"; };
+		2616428B178959B800DE6832 /* NibCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = NibCell.xib; path = ../NibCell.xib; sourceTree = "<group>"; };
 		263260A9176E635000D5DE6E /* MainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		263260AB176E63F100D5DE6E /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		263260AC176E63F100D5DE6E /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 			children = (
 				26B0D9F7176CB89900654D78 /* MainStoryboard_iPad.storyboard */,
 				263260A9176E635000D5DE6E /* MainStoryboard_iPhone.storyboard */,
+				2616428B178959B800DE6832 /* NibCell.xib */,
 				263260AB176E63F100D5DE6E /* AppDelegate.h */,
 				263260AC176E63F100D5DE6E /* AppDelegate.m */,
 				263260AD176E63F100D5DE6E /* DetailViewController.h */,
@@ -277,6 +280,7 @@
 				26B0D9F9176CB89900654D78 /* MainStoryboard_iPad.storyboard in Resources */,
 				26B0DA1C176CBDCC00654D78 /* icon.png in Resources */,
 				263260AA176E635000D5DE6E /* MainStoryboard_iPhone.storyboard in Resources */,
+				2616428C178959B800DE6832 /* NibCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
