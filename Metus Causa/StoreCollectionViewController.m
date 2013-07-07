@@ -7,6 +7,7 @@
 //
 
 #import "StoreCollectionViewController.h"
+#import "Publication.h"
 
 @interface StoreCollectionViewController ()
 
@@ -85,35 +86,26 @@
     UICollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"cvCell" forIndexPath:indexPath];
     
     NSInteger index = indexPath.row;
-/*
-    UILabel *titleLabel = (UILabel *)[cell viewWithTag:101];
-    NSString *name = [publication name:index];
-    name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    name = [name stringByAppendingString:@" #"];
-    name = [name stringByAppendingString:[publication number:index]];
-    name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    titleLabel.text=name;    
 
-    UILabel *subtitleLabel = (UILabel *)[cell viewWithTag:102];
-    subtitleLabel.text=[publication title:index];
-*/
     UIImageView *imageView = (UIImageView *)[cell viewWithTag:103];
     [imageView setImage:[publication coverImage:index]];
 
-//    NSLog(@"%@",name);
 
+    UIImageView *downloadImageView = (UIImageView *)[cell viewWithTag:105];
 
-/*
-    NSString *cellData = @"cvCell";
+    NKLibrary *nkLib = [NKLibrary sharedLibrary];
+    NKIssue *nkIssue = [nkLib issueWithName:[publication issueId:index]];
     
-    static NSString *cellIdentifier = @"cvCell";
+    if(nkIssue.status==NKIssueContentStatusAvailable) {
+        downloadImageView.alpha = 0.0;
+    } else {
+        if(nkIssue.status==NKIssueContentStatusDownloading) {
+            downloadImageView.alpha = 0.0;
+        } else {
+            downloadImageView.alpha = 0.7;
+        }
+    }
     
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
-    
-    UILabel *titleLabel = (UILabel *)[cell viewWithTag:100];
-    
-    [titleLabel setText:cellData];
-*/
     return cell;
 
 }
