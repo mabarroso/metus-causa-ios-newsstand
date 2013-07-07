@@ -90,6 +90,7 @@
     UIImageView *imageView = (UIImageView *)[cell viewWithTag:103];
     [imageView setImage:[publication coverImage:index]];
 
+    UIProgressView *downloadProgress = (UIProgressView *)[cell viewWithTag:104];    
 
     UIImageView *downloadImageView = (UIImageView *)[cell viewWithTag:105];
 
@@ -97,17 +98,34 @@
     NKIssue *nkIssue = [nkLib issueWithName:[publication issueId:index]];
     
     if(nkIssue.status==NKIssueContentStatusAvailable) {
+        downloadProgress.alpha = 0.0;
         downloadImageView.alpha = 0.0;
     } else {
         if(nkIssue.status==NKIssueContentStatusDownloading) {
+            downloadProgress.alpha = 0.7;
             downloadImageView.alpha = 0.0;
         } else {
+            downloadProgress.alpha = 0.0;
             downloadImageView.alpha = 0.7;
         }
     }
     
     return cell;
+}
 
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath  {
+
+    [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    // possible actions: read or download
+    NKLibrary *nkLib = [NKLibrary sharedLibrary];
+    NKIssue *nkIssue = [nkLib issueWithName:[publication issueId:indexPath.row]];
+    // NSURL *downloadURL = [nkIssue contentURL];
+    if(nkIssue.status==NKIssueContentStatusAvailable) {
+        [self readIssue:nkIssue];
+    } else if(nkIssue.status==NKIssueContentStatusNone) {
+        [self downloadIssueAtIndex:indexPath.row];
+    }
+    
 }
 
 #pragma mark - Publisher interaction
@@ -143,6 +161,82 @@
     [alert show];
     //[alert release];
     [self.navigationItem setRightBarButtonItem:refreshButton];
+}
+
+#pragma mark - Issue actions
+
+-(void)readIssue:(NKIssue *)nkIssue {
+    [[NKLibrary sharedLibrary] setCurrentlyReadingIssue:nkIssue];
+    QLPreviewController *previewController = [[QLPreviewController alloc] init];
+    previewController.delegate=self;
+    previewController.dataSource=self;
+    [self presentModalViewController:previewController animated:YES];
+}
+
+-(void)downloadIssueAtIndex:(NSInteger)index {
+    NSLog(@"download %@", [publication issueId:index]);
+    NSLog(@"content %@", [publication content:index]);
+    
+    NSString *url=[publication content:index];
+    
+    NKLibrary *nkLib = [NKLibrary sharedLibrary];
+    NKIssue *nkIssue = [nkLib issueWithName:[publication issueId:index]];
+    NSURL *downloadURL = [NSURL URLWithString:url];
+    if(!downloadURL) return;
+    NSURLRequest *req = [NSURLRequest requestWithURL:downloadURL];
+    NKAssetDownload *assetDownload = [nkIssue addAssetWithRequest:req];
+    [assetDownload downloadWithDelegate:self];
+    [assetDownload setUserInfo:[NSDictionary dictionaryWithObjectsAndKeys:
+                                [NSNumber numberWithInt:index],@"Index",
+                                nil]];
+    [self.collectionView reloadData];
+}
+
+#pragma mark - NSURLConnectionDownloadDelegate
+
+-(void)updateProgressOfConnection:(NSURLConnection *)connection withTotalBytesWritten:(long long)totalBytesWritten expectedTotalBytes:(long long)expectedTotalBytes {
+    // get asset
+    NKAssetDownload *dnl = connection.newsstandAssetDownload;
+    
+    UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:[[dnl.userInfo objectForKey:@"Index"] intValue] inSection:0]];
+    
+    UIProgressView *progressView = (UIProgressView *)[cell viewWithTag:104];
+    progressView.alpha=0.7;
+    progressView.progress=1.f*totalBytesWritten/expectedTotalBytes;
+    [self.collectionView reloadData];
+}
+
+-(void)connection:(NSURLConnection *)connection didWriteData:(long long)bytesWritten totalBytesWritten:(long long)totalBytesWritten expectedTotalBytes:(long long)expectedTotalBytes {
+    [self updateProgressOfConnection:connection withTotalBytesWritten:totalBytesWritten expectedTotalBytes:expectedTotalBytes];
+    [self.collectionView reloadData];
+}
+
+-(void)connectionDidResumeDownloading:(NSURLConnection *)connection totalBytesWritten:(long long)totalBytesWritten expectedTotalBytes:(long long)expectedTotalBytes {
+    NSLog(@"Resume downloading %f",1.f*totalBytesWritten/expectedTotalBytes);
+    [self updateProgressOfConnection:connection withTotalBytesWritten:totalBytesWritten expectedTotalBytes:expectedTotalBytes];
+    [self.collectionView reloadData];
+}
+
+-(void)connectionDidFinishDownloading:(NSURLConnection *)connection destinationURL:(NSURL *)destinationURL {
+    // copy file to destination URL
+    NKAssetDownload *dnl = connection.newsstandAssetDownload;
+    NKIssue *nkIssue = dnl.issue;
+    NSString *contentPath = [publication downloadPathForIssue:nkIssue];
+    NSError *moveError=nil;
+    NSLog(@"File is being copied to %@",contentPath);
+    
+    if([[NSFileManager defaultManager] moveItemAtPath:[destinationURL path] toPath:contentPath error:&moveError]==NO) {
+        NSLog(@"Error copying file from %@ to %@",destinationURL,contentPath);
+    }
+    
+    // update the Newsstand icon
+    UIImage *img = [publication coverImageForIssue:nkIssue];
+    if(img) {
+        [[UIApplication sharedApplication] setNewsstandIconImage:img];
+        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:1];
+    }
+    
+    [self.collectionView reloadData];
 }
 
 @end

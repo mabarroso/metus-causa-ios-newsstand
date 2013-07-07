@@ -95,7 +95,7 @@
         downloadLabel.alpha = 0.0;
     } else {
         if(nkIssue.status==NKIssueContentStatusDownloading) {
-            downloadProgress.alpha = 1.0;
+            downloadProgress.alpha = 0.7;
             downloadLabel.alpha = 0.0;
         } else {
             downloadProgress.alpha = 0.0;
@@ -227,8 +227,7 @@
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:[[dnl.userInfo objectForKey:@"Index"] intValue] inSection:0]];
     
     UIProgressView *progressView = (UIProgressView *)[cell viewWithTag:104];
-    progressView.alpha=1.0;
-    [[cell viewWithTag:104] setAlpha:0.0];
+    progressView.alpha=0.7;
     progressView.progress=1.f*totalBytesWritten/expectedTotalBytes;
     [self.tableView reloadData];
 }
