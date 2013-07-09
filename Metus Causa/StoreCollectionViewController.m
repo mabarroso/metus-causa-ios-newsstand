@@ -125,7 +125,19 @@
     } else if(nkIssue.status==NKIssueContentStatusNone) {
         [self downloadIssueAtIndex:indexPath.row];
     }
-    
+}
+
+#pragma mark - Trash content
+
+// remove all downloaded magazines
+-(void)trashContent {
+    NKLibrary *nkLib = [NKLibrary sharedLibrary];
+    NSLog(@"%@",nkLib.issues);
+    [nkLib.issues enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [nkLib removeIssue:(NKIssue *)obj];
+    }];
+    [publication addAllIssuesInNewsstand];
+    [self.collectionView reloadData];
 }
 
 #pragma mark - Publisher interaction
