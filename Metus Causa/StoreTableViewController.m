@@ -234,13 +234,13 @@
 
 -(void)connection:(NSURLConnection *)connection didWriteData:(long long)bytesWritten totalBytesWritten:(long long)totalBytesWritten expectedTotalBytes:(long long)expectedTotalBytes {
     [self updateProgressOfConnection:connection withTotalBytesWritten:totalBytesWritten expectedTotalBytes:expectedTotalBytes];
-    [self.tableView reloadData];
+//    [self.tableView reloadData];
 }
 
 -(void)connectionDidResumeDownloading:(NSURLConnection *)connection totalBytesWritten:(long long)totalBytesWritten expectedTotalBytes:(long long)expectedTotalBytes {
     NSLog(@"Resume downloading %f",1.f*totalBytesWritten/expectedTotalBytes);
     [self updateProgressOfConnection:connection withTotalBytesWritten:totalBytesWritten expectedTotalBytes:expectedTotalBytes];
-    [self.tableView reloadData];
+//    [self.tableView reloadData];
 }
 
 -(void)connectionDidFinishDownloading:(NSURLConnection *)connection destinationURL:(NSURL *)destinationURL {

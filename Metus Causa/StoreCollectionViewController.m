@@ -90,7 +90,7 @@
     UIImageView *imageView = (UIImageView *)[cell viewWithTag:103];
     [imageView setImage:[publication coverImage:index]];
 
-    UIProgressView *downloadProgress = (UIProgressView *)[cell viewWithTag:104];    
+    UIProgressView *downloadProgress = (UIProgressView *)[cell viewWithTag:104];
 
     UIImageView *downloadImageView = (UIImageView *)[cell viewWithTag:105];
 
@@ -106,7 +106,7 @@
             downloadImageView.alpha = 0.0;
         } else {
             downloadProgress.alpha = 0.0;
-            downloadImageView.alpha = 0.7;
+            downloadImageView.alpha = 0.9;
         }
     }
     
@@ -194,27 +194,38 @@
 
 #pragma mark - NSURLConnectionDownloadDelegate
 
+-(void)reloadItemsInConnection:(NSURLConnection *)connection {
+    NKAssetDownload *dnl = connection.newsstandAssetDownload;
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:[[dnl.userInfo objectForKey:@"Index"] intValue] inSection:0];
+    NSArray *indexPathArray = [NSArray arrayWithObject:indexPath];
+    [self.collectionView reloadItemsAtIndexPaths:indexPathArray];
+}
+
 -(void)updateProgressOfConnection:(NSURLConnection *)connection withTotalBytesWritten:(long long)totalBytesWritten expectedTotalBytes:(long long)expectedTotalBytes {
     // get asset
     NKAssetDownload *dnl = connection.newsstandAssetDownload;
     
-    UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:[[dnl.userInfo objectForKey:@"Index"] intValue] inSection:0]];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:[[dnl.userInfo objectForKey:@"Index"] intValue] inSection:0];
+    
+    UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:indexPath];
     
     UIProgressView *progressView = (UIProgressView *)[cell viewWithTag:104];
     progressView.alpha=0.7;
     progressView.progress=1.f*totalBytesWritten/expectedTotalBytes;
-    [self.collectionView reloadData];
+    NSLog(@"Update downloading %f",1.f*totalBytesWritten/expectedTotalBytes);    
+
+    [self reloadItemsInConnection:connection];
 }
 
 -(void)connection:(NSURLConnection *)connection didWriteData:(long long)bytesWritten totalBytesWritten:(long long)totalBytesWritten expectedTotalBytes:(long long)expectedTotalBytes {
     [self updateProgressOfConnection:connection withTotalBytesWritten:totalBytesWritten expectedTotalBytes:expectedTotalBytes];
-    [self.collectionView reloadData];
+    [self reloadItemsInConnection:connection];
 }
 
 -(void)connectionDidResumeDownloading:(NSURLConnection *)connection totalBytesWritten:(long long)totalBytesWritten expectedTotalBytes:(long long)expectedTotalBytes {
     NSLog(@"Resume downloading %f",1.f*totalBytesWritten/expectedTotalBytes);
     [self updateProgressOfConnection:connection withTotalBytesWritten:totalBytesWritten expectedTotalBytes:expectedTotalBytes];
-    [self.collectionView reloadData];
+    [self reloadItemsInConnection:connection];
 }
 
 -(void)connectionDidFinishDownloading:(NSURLConnection *)connection destinationURL:(NSURL *)destinationURL {
@@ -236,7 +247,20 @@
         [[UIApplication sharedApplication] setApplicationIconBadgeNumber:1];
     }
     
-    [self.collectionView reloadData];
+    [self reloadItemsInConnection:connection];
+}
+
+#pragma mark - QuickLook
+
+- (NSInteger) numberOfPreviewItemsInPreviewController: (QLPreviewController *) controller {
+    return 1;
+}
+
+- (id <QLPreviewItem>) previewController: (QLPreviewController *) controller previewItemAtIndex: (NSInteger) index {
+    NKIssue *nkIssue = [[NKLibrary sharedLibrary] currentlyReadingIssue];
+    NSURL *issueURL = [NSURL fileURLWithPath:[publication downloadPathForIssue:nkIssue]];
+    NSLog(@"Issue URL: %@",issueURL);
+    return issueURL;
 }
 
 @end

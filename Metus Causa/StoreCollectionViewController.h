@@ -11,7 +11,7 @@
 #import <QuickLook/QuickLook.h>
 #import "Publication.h"
 
-@interface StoreCollectionViewController : UICollectionViewController <NSXMLParserDelegate> {
+@interface StoreCollectionViewController : UICollectionViewController <NSXMLParserDelegate,QLPreviewControllerDataSource,QLPreviewControllerDelegate> {
     Publication *publication;
     UIBarButtonItem *refreshButton;
     UIBarButtonItem *waitButton;
