@@ -26,13 +26,22 @@ NSString *PublicationFailedUpdateNotification = @"PublicationFailedUpdate";
 }
 @end
 
+static Publication *publicationInstance = NULL;
+
 @implementation Publication
 
 @synthesize ready;
 
++(Publication *)getInstance {
+    if ( !publicationInstance || publicationInstance == NULL ) {
+        publicationInstance = [[Publication alloc] init];
+    }
+    return publicationInstance;
+}
+
 -(id)init {
-    self = [super init];
-    if(self) {
+    if ( self = [super init] )
+    {
         ready = NO;
         issues = nil;
     }
@@ -45,6 +54,7 @@ NSString *PublicationFailedUpdateNotification = @"PublicationFailedUpdate";
 }
 
 -(void)getIssuesList {
+    NSLog(@"getIssuesList");
     feeds = [[NSMutableArray alloc] init];
     NSURL *url = [NSURL URLWithString:@"http://circulo.almianos.net/newsstand/metuscausa.xml"];
     parser = [[NSXMLParser alloc] initWithContentsOfURL:url];

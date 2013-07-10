@@ -18,6 +18,7 @@ extern  NSString *PublicationFailedUpdateNotification;
 
 @property (nonatomic,readonly,getter = isReady) BOOL ready;
 
++(Publication *)getInstance;
 -(void)getIssuesList;
 -(NSInteger)numberOfIssues;
 -(NSString *)issueId:(NSInteger)index;

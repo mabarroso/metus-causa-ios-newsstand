@@ -33,7 +33,7 @@
 {
     [super viewDidLoad];
 
-    publication = [[Publication alloc] init];
+    publication = [Publication getInstance];
         
     // define right bar button items
     refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadIssues)];
@@ -48,7 +48,9 @@
     // left bar button item
     self.navigationItem.leftBarButtonItem=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(trashContent)];
     
-    [self loadIssues];
+    if ([publication numberOfIssues] == 0) {
+        [self loadIssues];
+    }
 
     // Collection
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"Cell"];
