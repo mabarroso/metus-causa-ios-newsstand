@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <NewsstandKit/NewsstandKit.h>
+#include "TargetConditionals.h"
 
 extern  NSString *PublicationDidUpdateNotification;
 extern  NSString *PublicationFailedUpdateNotification;

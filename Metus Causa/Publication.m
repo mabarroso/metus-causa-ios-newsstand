@@ -56,7 +56,11 @@ static Publication *publicationInstance = NULL;
 -(void)getIssuesList {
     NSLog(@"getIssuesList");
     feeds = [[NSMutableArray alloc] init];
-    NSURL *url = [NSURL URLWithString:@"http://circulo.almianos.net/newsstand/metuscausa.xml"];
+    #if TARGET_IPHONE_SIMULATOR
+        NSURL *url = [NSURL URLWithString:@"http://localhost:3000/ezines/metus-causa/issues.xml"];
+    #else
+        NSURL *url = [NSURL URLWithString:@"http://circulo.almianos.net/newsstand/metuscausa.xml"];
+    #endif
     parser = [[NSXMLParser alloc] initWithContentsOfURL:url];
     [parser setDelegate:self];
     [parser setShouldResolveExternalEntities:NO];
